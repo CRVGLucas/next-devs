@@ -1,0 +1,9 @@
+<form class="login-form-container" [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
+    <label class="text-left" for="email">E-mail</label>
+    <input class="input full-width" type="email" formControlName="email" id="email">
+    
+    <label class="text-left" for="password">Senha</label>
+    <input class="input full-width" type="password" formControlName="password" id="password">
+    
+    <input class="input button-submit full-width" type="submit" title="ENTRAR"/>
+</form>

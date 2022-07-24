@@ -1,0 +1,14 @@
+<div class="full-width">
+    <form [formGroup]="registerForm" (ngSubmit)="registerUser(registerForm.value)">
+        <label class="text-left" for="name">Nome</label>
+        <input class="input full-width" id="name" type="text" formControlName="name"/>
+        
+        <label class="text-left" for="email">E-mail</label>
+        <input class="input full-width" id="email" type="email" formControlName="email" />
+        
+        <label class="text-left" for="password">Senha</label>
+        <input class="input full-width" id="password" type="password" formControlName="password"/>
+        <input class="input button-submit full-width" type="submit" title="CADASTRAR"/>
+    </form>
+</div>
+
