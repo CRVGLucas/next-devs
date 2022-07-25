@@ -1,0 +1,10 @@
+<div>
+    <a routerLink="/register-libs-and-frameworks">
+        Registrar nova biblioteca ou framework
+    </a>
+
+    <div *ngFor="let libAndFramework of libsAndFrameworks">
+        <p>{{ libAndFramework.name }}</p>
+        <p>{{ libAndFramework.description }}</p>
+    </div>
+</div>

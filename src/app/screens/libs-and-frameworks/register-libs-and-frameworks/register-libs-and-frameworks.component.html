@@ -1,0 +1,15 @@
+<form [formGroup]="registerForm" (ngSubmit)="registerLibOrFramework(registerForm.value)">
+    <label for="name">Nome</label>
+    <input type="text" formControlName="name" id="name"/>
+
+    <label for="description">Descrição</label>
+    <textarea formControlName="description" id="description"></textarea>
+
+    <label>Plataforma</label>
+    <select formControlName="idPlatform">
+        <option *ngFor="let platform of platforms" [value]="platform.id">{{ platform.nome }}</option>
+    </select>
+
+    <input type="submit" title="REGISTRAR"/>
+
+</form>

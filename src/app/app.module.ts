@@ -16,15 +16,20 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { Firestore } from 'firebase/firestore';
 import { UserService } from './screens/user/user.service';
+import { PlatformsComponent } from './screens/platforms/platforms.component';
+import { RegisterLibsAndFrameworksComponent } from './screens/libs-and-frameworks/register-libs-and-frameworks/register-libs-and-frameworks.component';
+import { ListLibsAndFrameworksComponent } from './screens/libs-and-frameworks/list-libs-and-frameworks/list-libs-and-frameworks.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
     UserRegisterComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    PlatformsComponent,
+    RegisterLibsAndFrameworksComponent,
+    ListLibsAndFrameworksComponent
   ],
   imports: [
     BrowserModule,

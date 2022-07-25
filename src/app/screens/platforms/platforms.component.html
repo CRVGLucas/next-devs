@@ -1,0 +1,8 @@
+<div class="full-width">
+    <div *ngFor="let platform of platforms" >
+        <a [routerLink]="['/libs-and-frameworks/', platform.id]">
+            <p>{{ platform.nome }}</p>
+
+        </a>
+    </div>
+</div>
