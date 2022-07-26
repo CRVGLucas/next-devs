@@ -10,7 +10,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { HeaderComponent } from './components/header/header.component';
 import { UserRegisterComponent } from './screens/user/user-register/user-register.component';
 import { UserLoginComponent } from './screens/user/user-login/user-login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
@@ -20,6 +20,11 @@ import { UserService } from './screens/user/user.service';
 import { PlatformsComponent } from './screens/platforms/platforms.component';
 import { RegisterLibsAndFrameworksComponent } from './screens/libs-and-frameworks/register-libs-and-frameworks/register-libs-and-frameworks.component';
 import { ListLibsAndFrameworksComponent } from './screens/libs-and-frameworks/list-libs-and-frameworks/list-libs-and-frameworks.component';
+import { ListLessonsComponent } from './screens/lessons/list-lessons/list-lessons.component';
+import { RegisterLessonsComponent } from './screens/lessons/register-lessons/register-lessons.component';
+import { LessonComponent } from './screens/lessons/lesson/lesson.component';
+import { HttpClientModule} from '@angular/common/http';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,9 +34,15 @@ import { ListLibsAndFrameworksComponent } from './screens/libs-and-frameworks/li
     UserLoginComponent,
     PlatformsComponent,
     RegisterLibsAndFrameworksComponent,
-    ListLibsAndFrameworksComponent
+    ListLibsAndFrameworksComponent,
+    ListLessonsComponent,
+    RegisterLessonsComponent,
+    LessonComponent
   ],
   imports: [
+    HttpClientModule, 
+    AngularEditorModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,

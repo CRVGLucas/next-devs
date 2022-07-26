@@ -1,0 +1,11 @@
+<div>
+    <a routerLink="/register-lesson">
+        Registrar nova aula
+    </a>
+
+    <div *ngFor="let lesson of lessonsList">
+        <a [routerLink]="['/lesson', lesson.id]">
+            <p>{{ lesson.title }}</p>
+        </a>
+    </div>
+</div>

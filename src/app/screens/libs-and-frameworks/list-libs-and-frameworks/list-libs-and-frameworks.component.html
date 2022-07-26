@@ -4,7 +4,9 @@
     </a>
 
     <div *ngFor="let libAndFramework of libsAndFrameworks">
-        <p>{{ libAndFramework.name }}</p>
-        <p>{{ libAndFramework.description }}</p>
+        <a [routerLink]="['/lessons', libAndFramework.id]">
+            <p>{{ libAndFramework.name }}</p>
+            <p>{{ libAndFramework.description }}</p>
+        </a>
     </div>
 </div>
