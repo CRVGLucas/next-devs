@@ -12,6 +12,8 @@ import {
 } from '@firebase/firestore';
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ToastService } from 'app/components/toastr/toast.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -80,7 +82,7 @@ export class RegisterLessonsComponent implements OnInit {
     content: new FormControl(''),
   })
 
-  constructor( private readonly firestore: Firestore) { 
+  constructor( private readonly firestore: Firestore, private toastr: ToastService, private router: Router) { 
     this.libAndFrameworkCollection = collection(this.firestore, 'linguagens-e-frameworks');
     this.platformsCollection = collection(this.firestore, 'plataformas');
     this.lessonsCollection = collection(this.firestore, 'aulas');
@@ -93,29 +95,27 @@ export class RegisterLessonsComponent implements OnInit {
   }
 
   createLesson(){
-    console.log("form: ", this.registerForm.value)
-
     if(!this.registerForm.value.idPlatform){
-
+      this.toastr.showError("Obrigatório selecionar uma plataforma")
     } else if(!this.registerForm.value.idLibFramework) {
-
+      this.toastr.showError("Obrigatório selecionar uma biblioteca ou framework")
     } else if(!this.registerForm.value.content) {
-
+      this.toastr.showError("Obrigatório conter algum conteúdo")
     } else {
       addDoc(this.lessonsCollection, this.registerForm.value).then(
         (success) => {
-          console.log("cadastrado com sucesso !")
+          this.toastr.showSuccess("Cadastrado com sucesso !")
+          this.router.navigate(['/platforms'])
         }
       ).catch(
         (error) => {
-          console.log("erro ao cadastrar: ", error)
+          this.toastr.showSuccess("Ocorreu um erro ao cadastrar, tente novamente.")
         }
       )
     }
   }
 
   getLibsAndFrameworks(){
-    console.log("id platform: ", this.registerForm.value.idPlatform)
     collectionData(this.libAndFrameworkCollection, {idField: 'id'}).subscribe(
       (query: any) => {
         query.map(
@@ -132,7 +132,6 @@ export class RegisterLessonsComponent implements OnInit {
   getPlatforms(){
     return collectionData(this.platformsCollection, {idField: 'id'}).subscribe(
       (plataformas: any) => {
-        console.log("plataformas: ", plataformas)
         this.platforms = plataformas
       }
     )

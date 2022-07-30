@@ -1,8 +1,32 @@
-<div class="full-width">
-    <div *ngFor="let platform of platforms" >
-        <a [routerLink]="['/libs-and-frameworks/', platform.id]">
-            <p>{{ platform.nome }}</p>
+<div class="container">
+    <div class="row mb-2">
 
-        </a>
-    </div>
-</div>
+      <div class="col-3">
+        <h4 class="text-muted mb-2">Plataformas</h4>
+      </div>
+
+      <div class="col-12 col-md-9 mt-1" *ngIf="!hideRegister">
+        <div class="d-flex align-items-center justify-content-end">
+          <a
+            class="btn btn-secondary btn-sm"
+            routerLink="/register-platform"
+          >
+            Registrar plataforma
+          </a>
+        </div>
+      </div>
+
+    </div>  
+
+    <div class="row">
+      <div class="col-4" *ngFor="let platform of platforms" [routerLink]="['/libs-and-frameworks/', platform.id]">
+        <div class="card">
+          <div class="card-body">
+              <img class="card-img-top" width="400" height="250" [src]="platform.logo" alt="">
+              <h3 class="text-center">{{ platform.nome }}</h3>
+          </div>
+      </div>  
+    </div>      
+
+    
+  </div>

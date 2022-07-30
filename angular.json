@@ -5,7 +5,12 @@
   "projects": {
     "next-devs": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "skipTests": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -21,6 +26,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "node_modules/ngx-toastr/toastr.css",
               {
                 "glob": "**/*",
                 "input": "./node_modules/@kolkov/angular-editor/assets/",

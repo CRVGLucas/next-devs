@@ -1,3 +1,5 @@
+import { ToastService } from './components/toastr/toast.service';
+import { ToastrComponent } from './components/toastr/toastr.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -14,17 +16,26 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreModule,
+} from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { UserService } from './screens/user/user.service';
-import { PlatformsComponent } from './screens/platforms/platforms.component';
 import { RegisterLibsAndFrameworksComponent } from './screens/libs-and-frameworks/register-libs-and-frameworks/register-libs-and-frameworks.component';
 import { ListLibsAndFrameworksComponent } from './screens/libs-and-frameworks/list-libs-and-frameworks/list-libs-and-frameworks.component';
 import { ListLessonsComponent } from './screens/lessons/list-lessons/list-lessons.component';
 import { RegisterLessonsComponent } from './screens/lessons/register-lessons/register-lessons.component';
 import { LessonComponent } from './screens/lessons/lesson/lesson.component';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PlatformsComponent } from './screens/platforms/platforms.component';
+import { RegisterPlatformComponent } from './screens/platforms/register-platform/register-platform.component';
+import { NgxLoadingModule } from 'ngx-loading';
+import { LoaderComponent } from './components/loader/loader.component';
+import { ToastrModule } from 'ngx-toastr';
+import { AuxiliaryFunctions } from './components/auxiliary-functions.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,15 +43,18 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     HeaderComponent,
     UserRegisterComponent,
     UserLoginComponent,
-    PlatformsComponent,
     RegisterLibsAndFrameworksComponent,
     ListLibsAndFrameworksComponent,
     ListLessonsComponent,
     RegisterLessonsComponent,
-    LessonComponent
+    LessonComponent,
+    PlatformsComponent,
+    RegisterPlatformComponent,
+    LoaderComponent,
+    ToastrComponent
   ],
   imports: [
-    HttpClientModule, 
+    HttpClientModule,
     AngularEditorModule,
     FormsModule,
     BrowserModule,
@@ -50,11 +64,15 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebase),    
+    ToastrModule.forRoot(),
+    NgxLoadingModule.forRoot({}),
+    AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    NgbModule,
+    NgbCollapseModule,
   ],
-  providers: [AngularFirestore, UserService],
-  bootstrap: [AppComponent]
+  providers: [AngularFirestore, UserService, ToastService, AuxiliaryFunctions],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

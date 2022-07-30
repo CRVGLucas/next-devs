@@ -6,6 +6,8 @@ import {
   DocumentData,
 } from '@firebase/firestore';
 import { UserService } from '../user.service';
+import { ToastService } from 'app/components/toastr/toast.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,19 +21,21 @@ export class UserRegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
-    password: new FormControl(''),
+    password: new FormControl('')  
   })
 
-  constructor(private userService: UserService) {}
-
+  constructor(private userService: UserService, private toastr: ToastService, private router: Router) {}
+  loading: boolean = false
   ngOnInit(): void {}
 
   registerUser(user: User){
+    
     if(user.password.length < 6){
-      throw new Error("A senha precisa ter mais de 6 caractéres")
+      this.toastr.showError("A senha precisa ter mais de 6 caractéres")
     } else if(!user.email){
-      throw new Error("O campo e-mail é obrigatório")
+      this.toastr.showError("O campo e-mail é obrigatório")
     } else {
+      this.loading = true
       this.userService.getUsers().subscribe(
         (users: any) => {
           let userFound = users.filter(
@@ -41,16 +45,21 @@ export class UserRegisterComponent implements OnInit {
           )
 
           if(userFound && userFound.length > 0){
-            throw new Error("Uma conta já foi cadastrada com este e-mail, tente usar outro e-mail.")
+            this.loading = false
+            this.toastr.showError("Uma conta já foi cadastrada com este e-mail, tente usar outro e-mail.")
           } else {
             user.createdAt =  new Date()
             this.userService.newUser(user).then(
               (success) => {
-                console.log("Funcionou !: ", success)
+                this.loading = false
+                this.toastr.showSuccess("Cadastro realizado com sucesso !")
+
+                this.router.navigate(['/login'])
               }
             ).catch(
               (error) => {
-                console.log("Deu erro: ", error)
+                this.loading = false
+                this.toastr.showError("Erro ao realizar cadastro, tente novamente.")
               }
             )
           }

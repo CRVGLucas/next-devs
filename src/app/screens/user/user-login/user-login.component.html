@@ -1,9 +1,45 @@
-<form class="login-form-container" [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
-    <label class="text-left" for="email">E-mail</label>
-    <input class="input full-width" type="email" formControlName="email" id="email">
-    
-    <label class="text-left" for="password">Senha</label>
-    <input class="input full-width" type="password" formControlName="password" id="password">
-    
-    <input class="input button-submit full-width" type="submit" title="ENTRAR"/>
-</form>
+<div class="container">
+    <div class="row">
+      <div class="col-md-4 col-12 offset-md-4">
+        <form
+          [formGroup]="loginForm"
+          class="my-5"
+          (ngSubmit)="loginUser(loginForm.value)"
+        >
+          <h2 class="text-center mb-2 text-muted">Faça login</h2>
+          <div class="form-floating mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="floatingInput"
+              formControlName="email"
+              placeholder="name@example.com"
+            />
+            <label for="floatingInput">E-mail</label>
+          </div>
+          <div class="form-floating">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+              id="floatingPassword"
+              placeholder="Senha"
+            />
+            <label for="floatingPassword">Senha</label>
+          </div>
+  
+          <div>
+            <button
+              class="btn btn-success btn-lg w-100 btn-block mt-4"
+              type="submit"
+              [disabled]="loginForm.invalid"
+            >
+              Entrar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<app-loader [loading]="loading"></app-loader>

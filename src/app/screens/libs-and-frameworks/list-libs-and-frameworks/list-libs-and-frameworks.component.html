@@ -1,12 +1,39 @@
-<div>
-    <a routerLink="/register-libs-and-frameworks">
-        Registrar nova biblioteca ou framework
-    </a>
 
-    <div *ngFor="let libAndFramework of libsAndFrameworks">
-        <a [routerLink]="['/lessons', libAndFramework.id]">
-            <p>{{ libAndFramework.name }}</p>
-            <p>{{ libAndFramework.description }}</p>
+
+<div class="container"> 
+  <div class="row" *ngIf="!hideRegister">
+    <div class="col-12 col-md-9 mt-1 mb-4">
+      <div class="d-flex ">
+        <a
+          class="btn btn-secondary btn-sm"
+          routerLink="/register-libs-and-frameworks"
+        >
+          Registrar nova biblioteca ou framework
         </a>
+      </div>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4" *ngFor="let libAndFramework of libsAndFrameworks">
+      <div class="card" [routerLink]="['/lessons', libAndFramework.id]">
+        <div class="card-body">
+            <img *ngIf="libAndFramework.logo" class="card-img-top" width="250" height="180" [src]="libAndFramework.logo" alt="">
+            <h3 class="text-center">{{ libAndFramework.name }}</h3>
+            <small [innerHTML]="toLimitText(libAndFramework.description, 56, '...')"></small>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+  
+  <div
+    class="alert alert-warning my-4 w-50 text-center mx-auto"
+    *ngIf="libsAndFrameworks.length === 0"
+  >
+    Nenhuma informação encontrada. <br />
+    Selicione um filtro no menu ao lado <br/>
+    <span>ou <a routerLink="/register-libs-and-frameworks">crie uma nova</a></span>
+  </div>

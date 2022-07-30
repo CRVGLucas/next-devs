@@ -9,6 +9,7 @@ import { RegisterLibsAndFrameworksComponent } from './screens/libs-and-framework
 import { ListLibsAndFrameworksComponent } from './screens/libs-and-frameworks/list-libs-and-frameworks/list-libs-and-frameworks.component';
 import { ListLessonsComponent } from './screens/lessons/list-lessons/list-lessons.component';
 import { LessonComponent } from './screens/lessons/lesson/lesson.component';
+import { RegisterPlatformComponent } from './screens/platforms/register-platform/register-platform.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -17,7 +18,12 @@ const routes: Routes = [
   {path: 'register-libs-and-frameworks', component: RegisterLibsAndFrameworksComponent},
   {path: 'register-lesson', component: RegisterLessonsComponent},
   {path: 'platforms', component: PlatformsComponent},
-  {path: 'libs-and-frameworks/:id', component: ListLibsAndFrameworksComponent},
+  {path: 'register-platform', component: RegisterPlatformComponent},
+  {
+    path: 'libs-and-frameworks/:id',
+    component: ListLibsAndFrameworksComponent,
+  },
+  //{path: 'platforms', loadChildren: () => import('./screens/platforms/platforms.module').then((module) => module.PlatformsModule)},
   {path: 'lessons/:id', component: ListLessonsComponent},
   {path: 'lesson/:id', component: LessonComponent}
 ];

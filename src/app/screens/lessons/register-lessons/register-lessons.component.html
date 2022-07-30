@@ -1,26 +1,60 @@
-<form [formGroup]="registerForm" (ngSubmit)="createLesson()">
-    
-    <label for="title">Título</label>
-    <input type="text" formControlName="title" id="title"/>
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <form
+          [formGroup]="registerForm"
+          (ngSubmit)="createLesson()"
+        >
+          <h3 class="text-center text-muted mb-3">Informe os dados da nova aula</h3>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              formControlName="title"
+              placeholder="Título da aula"
+            />
+            <label for="floatingInput">Título</label>
+          </div>
+  
+          <div class="form-floating mb-3">
+            <select class="form-control" id="idPlatform" formControlName="idPlatform" name="platform" (change)="getLibsAndFrameworks()">
+                <option *ngFor="let platform of platforms" [value]="platform.id">
+                    {{ platform.nome }}
+                </option>
+            </select>
+            <label for="idPlatform">Plataforma</label>
+          </div>
 
-    <label for="libFramework">Plataforma</label>
-    <select id="libFramework" formControlName="idPlatform" name="platform" (change)="getLibsAndFrameworks()">
-        <option *ngFor="let platform of platforms" [value]="platform.id">
-            {{ platform.nome }}
-        </option>
-    </select>
+          <div class="form-floating mb-3" *ngIf="registerForm.value.idPlatform.length > 0">
+            <select class="form-control" id="libFramework" formControlName="idLibFramework">
+                <option *ngFor="let libAndFramework of libsAndFrameworks" [value]="libAndFramework.id">
+                    {{ libAndFramework.name }}
+                </option>
+            </select>
+            <label for="libFramework">Biblioteca ou Framework</label>
+          </div>
 
-    <div *ngIf="registerForm.value.idPlatform.length > 0">
-        <label for="libFramework">Biblioteca ou Framework utilizado</label>
-        <select id="libFramework" formControlName="idLibFramework">
-            <option *ngFor="let libAndFramework of libsAndFrameworks" [value]="libAndFramework.id">
-                {{ libAndFramework.name }}
-            </option>
-        </select>
+
+          <div class="form-floating mb-3">
+            <angular-editor id="content" formControlName="content"  [config]="editorConfig"></angular-editor>
+          </div>
+  
+
+          <button
+            class="btn btn-lg btn-success w-100 btn-block"
+            type="submit"
+            [disabled]="registerForm.invalid"
+          >
+            Registrar
+          </button>
+          <a
+            class="btn btn-sm btn-link w-100 btn-block text-muted mt-3"
+            routerLink="/platforms"
+          >
+            Voltar
+          </a>
+        </form>
+      </div>
     </div>
-
-    <label>Conteúdo</label>
-    <angular-editor formControlName="content"  [config]="editorConfig"></angular-editor>
-
-    <input type="submit" title="cadastrar"/>
-</form>
+  </div>

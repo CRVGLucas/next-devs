@@ -1,4 +1,8 @@
-<div>
-    <h1>{{ lesson.title }}</h1>
-    <p>{{ lesson.content}}</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+                <h1>{{ lesson.title }}</h1>
+                <p [innerHTML]="lesson.content"></p>
+        </div>
+    </div>
 </div>

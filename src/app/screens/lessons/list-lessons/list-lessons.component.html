@@ -1,11 +1,17 @@
-<div>
-    <a routerLink="/register-lesson">
-        Registrar nova aula
-    </a>
-
-    <div *ngFor="let lesson of lessonsList">
-        <a [routerLink]="['/lesson', lesson.id]">
-            <p>{{ lesson.title }}</p>
+<div class="container">
+        <a class="btn btn-secondary btn-sm" routerLink="/register-lesson" *ngIf="!hideRegister">
+            Registrar nova aula
         </a>
+
+
+    <div class="row">
+        <div class="col-12" *ngFor="let lesson of lessonsList">
+            <a class="text-center font-black" [routerLink]="['/lesson', lesson.id]">
+                <h1>{{ lesson.title }}</h1> 
+                <p [innerHTML]="toLimitText(lesson.content, 200, '...')"></p>
+            </a>
+        </div> 
     </div>
+
+
 </div>

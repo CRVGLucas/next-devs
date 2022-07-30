@@ -1,15 +1,73 @@
-<form [formGroup]="registerForm" (ngSubmit)="registerLibOrFramework(registerForm.value)">
-    <label for="name">Nome</label>
-    <input type="text" formControlName="name" id="name"/>
+<div class="container">
+    <div class="row">
+      <div class="col-md-4 col-12 offset-md-4">
+        <form
+          [formGroup]="registerForm"
+          (ngSubmit)="registerLibOrFramework($event)"
+        >
+          <h3 class="text-center text-muted mb-3">Informe os dados nova lib</h3>
+          <div class="form-floating mb-3">
+            <input
+              type="name"
+              class="form-control"
+              id="floatingInput"
+              formControlName="name"
+              placeholder="name@example.com"
+            />
+            <label for="floatingInput">Nome</label>
+          </div>
+  
+          <div class="form-floating mb-3">
+            <textarea
+              formControlName="description"
+              class="form-control"
+              placeholder="Descrição"
+              id="floatingTextarea2"
+              rows="5"
+            ></textarea>
+            <label for="floatingTextarea2">Descrição</label>
+          </div>
 
-    <label for="description">Descrição</label>
-    <textarea formControlName="description" id="description"></textarea>
-
-    <label>Plataforma</label>
-    <select formControlName="idPlatform">
-        <option *ngFor="let platform of platforms" [value]="platform.id">{{ platform.nome }}</option>
-    </select>
-
-    <input type="submit" title="REGISTRAR"/>
-
-</form>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="logo"
+              formControlName="logo"
+              placeholder="Logo"
+            />
+            <label for="logo">URL da logo</label>
+          </div>
+  
+          <div class="form-floating mb-3">
+            <select
+              formControlName="idPlatform"
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+            >
+              <option selected>Selecione</option>
+              <option *ngFor="let platform of platforms" [value]="platform.id">
+                {{ platform.nome }}
+              </option>
+            </select>
+            <label for="floatingSelect">Plataforma</label>
+          </div>
+  
+          <button
+            class="btn btn-lg btn-success w-100 btn-block"
+            type="submit"
+            [disabled]="registerForm.invalid"
+          >
+            Registrar
+          </button>
+          <a
+            class="btn btn-sm btn-link w-100 btn-block text-muted mt-3"
+            routerLink="/platforms"
+          >
+            Voltar
+          </a>
+        </form>
+      </div>
+    </div>
+  </div>

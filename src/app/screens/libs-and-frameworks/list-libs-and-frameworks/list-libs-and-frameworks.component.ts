@@ -10,6 +10,7 @@ import {
   updateDoc,
 } from '@firebase/firestore';
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
+import { UserService } from 'app/screens/user/user.service';
 @Component({
   selector: 'app-list-libs-and-frameworks',
   templateUrl: './list-libs-and-frameworks.component.html',
@@ -19,14 +20,20 @@ export class ListLibsAndFrameworksComponent implements OnInit {
   idPlatform: any
   libAndFrameworkCollection: CollectionReference<DocumentData> | any;
   libsAndFrameworks: any = []
-  constructor(private route: ActivatedRoute, private readonly firestore: Firestore) {
-    this.idPlatform = this.route.snapshot.paramMap.get('id');
+  hideRegister: boolean = true; 
+
+  constructor(private route: ActivatedRoute, private readonly firestore: Firestore, private userService: UserService) {
     this.libAndFrameworkCollection = collection(this.firestore, 'linguagens-e-frameworks');
-    this.getLibsAndFrameworks()
   }
 
   ngOnInit(): void {
-    console.log("libs: ", this.libsAndFrameworks)
+    this.idPlatform = this.route.snapshot.paramMap.get('id');
+    this.getLibsAndFrameworks() 
+    this.hideRegister = this.userService.checkUserIsAdmin()
+  }
+
+  toLimitText(text = '', limit = 50, elipsi?: string): string{
+    return `${text.substring(0,limit)}${elipsi}`
   }
 
   getLibsAndFrameworks(){

@@ -28,6 +28,23 @@ export class UserService {
     return collectionData(this.usersCollection, {idField: 'id'})
   }
 
+  checkUserIsLogged(){
+    const user = localStorage.getItem('next_devs@user')
+    return user ? true : false
+  }
+
+
+  checkUserIsAdmin(){
+    let user: any = localStorage.getItem('next_devs@user')
+    if(user){
+      user = JSON.parse(user)
+      if(user.isAdmin){
+        return true
+      }
+      return false
+    }
+    return false
+  }
   
 
   newUser(user: User){
