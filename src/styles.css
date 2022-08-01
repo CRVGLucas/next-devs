@@ -29,3 +29,15 @@
     color: white;
     border:1px solid green;
 }
+
+.nav-link {
+    color: white;
+}
+
+.el-pointer {
+    cursor: pointer;
+}
+
+.nav-link.active{
+    color: rgb(117,194,175) !important
+}

@@ -1,5 +1,15 @@
 <div class="container">
     <div class="row">
+        <div class="col-10"></div>
+        <div class="col-2">
+            <button type="button" [ngClass]="{'btn-primary': !favorited, 'btn-secondary': favorited}" class="btn btn-sm" [disabled]="favorited" *ngIf="!hideFavorite" (click)="addToFavorites()">
+                {{ favorited ? 'Aula salva aos favoritos' : 'Adicionar Aula aos favoritos'}}
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        
         <div class="col-12">
                 <h1>{{ lesson.title }}</h1>
                 <p [innerHTML]="lesson.content"></p>

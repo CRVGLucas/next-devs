@@ -19,8 +19,8 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     localStorage.removeItem('next_devs@user')
+    this.hideRegister = false
     this.router.navigate(['/login'])
-    this.hideRegister = true
   }
 
 }

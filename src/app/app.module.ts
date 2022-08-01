@@ -36,6 +36,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AuxiliaryFunctions } from './components/auxiliary-functions.service';
+import { FavoritesComponent } from './screens/favorites/favorites.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,8 @@ import { AuxiliaryFunctions } from './components/auxiliary-functions.service';
     PlatformsComponent,
     RegisterPlatformComponent,
     LoaderComponent,
-    ToastrComponent
+    ToastrComponent,
+    FavoritesComponent
   ],
   imports: [
     HttpClientModule,

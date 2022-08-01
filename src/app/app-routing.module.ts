@@ -10,6 +10,7 @@ import { ListLibsAndFrameworksComponent } from './screens/libs-and-frameworks/li
 import { ListLessonsComponent } from './screens/lessons/list-lessons/list-lessons.component';
 import { LessonComponent } from './screens/lessons/lesson/lesson.component';
 import { RegisterPlatformComponent } from './screens/platforms/register-platform/register-platform.component';
+import { FavoritesComponent } from './screens/favorites/favorites.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'register-lesson', component: RegisterLessonsComponent},
   {path: 'platforms', component: PlatformsComponent},
   {path: 'register-platform', component: RegisterPlatformComponent},
+  {path: 'favorites', component: FavoritesComponent},
   {
     path: 'libs-and-frameworks/:id',
     component: ListLibsAndFrameworksComponent,

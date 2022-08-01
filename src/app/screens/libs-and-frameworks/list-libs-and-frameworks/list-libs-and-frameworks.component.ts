@@ -23,13 +23,13 @@ export class ListLibsAndFrameworksComponent implements OnInit {
   hideRegister: boolean = true; 
 
   constructor(private route: ActivatedRoute, private readonly firestore: Firestore, private userService: UserService) {
-    this.libAndFrameworkCollection = collection(this.firestore, 'linguagens-e-frameworks');
+    this.libAndFrameworkCollection = collection(this.firestore, 'linguagens-e-frameworks'); 
+    this.hideRegister = this.userService.checkUserIsAdmin() 
   }
 
   ngOnInit(): void {
     this.idPlatform = this.route.snapshot.paramMap.get('id');
     this.getLibsAndFrameworks() 
-    this.hideRegister = this.userService.checkUserIsAdmin()
   }
 
   toLimitText(text = '', limit = 50, elipsi?: string): string{

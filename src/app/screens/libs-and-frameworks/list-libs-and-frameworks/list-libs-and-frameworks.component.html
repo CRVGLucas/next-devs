@@ -1,7 +1,7 @@
 
 
 <div class="container"> 
-  <div class="row" *ngIf="!hideRegister">
+  <div class="row" *ngIf="hideRegister">
     <div class="col-12 col-md-9 mt-1 mb-4">
       <div class="d-flex ">
         <a
@@ -19,8 +19,8 @@
       <div class="card" [routerLink]="['/lessons', libAndFramework.id]">
         <div class="card-body">
             <img *ngIf="libAndFramework.logo" class="card-img-top" width="250" height="180" [src]="libAndFramework.logo" alt="">
-            <h3 class="text-center">{{ libAndFramework.name }}</h3>
-            <small [innerHTML]="toLimitText(libAndFramework.description, 56, '...')"></small>
+            <p class="card-title">{{ libAndFramework.name }}</p>
+            <small class="card-text" [innerHTML]="toLimitText(libAndFramework.description, 110, '...')"></small>
         </div>
       </div>
     </div>

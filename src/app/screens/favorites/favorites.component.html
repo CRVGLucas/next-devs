@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row mb-4" *ngIf="listLFFavorites.length > 0">
+        <div class="col-12">
+            <h4>Bibliotecas e Frameworks favoritados</h4>
+        </div>
+        <div class="col-4" *ngFor="let libAndFramework of listLFFavorites">
+            <div class="card" >
+              <div class="card-body" [routerLink]="['/lessons', libAndFramework.id]">
+                  <img *ngIf="libAndFramework.logo" class="card-img-top" width="250" height="180" [src]="libAndFramework.logo" alt="">
+                  <p class="card-title">{{ libAndFramework.name }}</p>
+                  <small class="card-text" [innerHTML]="toLimitText(libAndFramework.description, 110, '...')"></small>
+               </div>
+               <button class="btn bt-lg btn-danger" (click)="removeLFFavorite(libAndFramework)">Remover dos favoritos</button>
+
+            </div>
+          </div>
+    </div>
+
+    <div class="row" *ngIf="listLessonsFavorites.length > 0">
+
+        <div class="col-12">
+            <h4>Aulas favoritadas</h4>
+        </div>
+
+        <div class="col-12 card" *ngFor="let lesson of listLessonsFavorites" class="text-center el-pointer" [routerLink]="['/lesson', lesson.id]">
+            <h1>{{ lesson.title }}</h1> 
+            <p [innerHTML]="toLimitText(lesson.content, 800, '...')"></p>
+            <button class="btn bt-lg btn-danger" (click)="removeLessonFavorite(lesson)">Remover dos favoritos</button>
+        </div> 
+
+    </div>
+
+
+    <div class="row" *ngIf="listLessonsFavorites.length == 0 && listLFFavorites.length == 0">
+        <div class="col-12 text-center">
+            <h4>Lista de favoritos vazia.</h4>
+        </div>
+    </div>
+</div>
