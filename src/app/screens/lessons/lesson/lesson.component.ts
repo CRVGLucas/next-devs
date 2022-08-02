@@ -1,3 +1,4 @@
+import { ToastService } from 'app/components/toastr/toast.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
@@ -25,12 +26,14 @@ export class LessonComponent implements OnInit {
   hideFavorite: boolean = false
   hideRegister: boolean = true;
   favorited: boolean = false;
-  constructor(private route: ActivatedRoute, private readonly firestore: Firestore, private userService: UserService, private favoriteService: FavoritesService) {
+  hideEdit: boolean = true;
+  constructor(private route: ActivatedRoute, private toastr: ToastService, private readonly firestore: Firestore, private userService: UserService, private favoriteService: FavoritesService) {
     this.idLesson = this.route.snapshot.paramMap.get('id'); 
     this.lessonCollection = collection(this.firestore, 'aulas');
     this.favoritesLessonsCollection = collection(this.firestore, 'favorites-lessons'); 
     this.getLessons()
     this.hideFavorite = this.checkIfLessonIsFavorited()
+    this.hideEdit = this.userService.checkUserIsAdmin()
   }
 
   addToFavorites(){
@@ -38,6 +41,18 @@ export class LessonComponent implements OnInit {
     user = JSON.parse(user)
     this.favoriteService.saveLessonsToFavorites(user.id, this.idLesson)
     this.hideFavorite = this.checkIfLessonIsFavorited()
+  }
+
+  removeLesson() {
+    const lessonReference = doc(this.firestore, `aulas/${this.idLesson}`);
+    return deleteDoc(lessonReference).then(
+      (success) => {
+        this.toastr.showSuccess('Aula deletada')
+      },
+      (error) => {
+        this.toastr.showError('Erro ao deletar a aula')
+      }
+    )
   }
 
   checkIfLessonIsFavorited(){

@@ -8,6 +8,7 @@ import {
 import { UserService } from '../user.service';
 import { ToastService } from 'app/components/toastr/toast.service';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 @Component({
@@ -24,11 +25,13 @@ export class UserRegisterComponent implements OnInit {
     password: new FormControl('')  
   })
 
-  constructor(private userService: UserService, private toastr: ToastService, private router: Router) {}
+  constructor(private userService: UserService, private auth: AngularFireAuth, private toastr: ToastService, private router: Router) {}
   loading: boolean = false
   ngOnInit(): void {}
 
   registerUser(user: User){
+
+
     
     if(user.password.length < 6){
       this.toastr.showError("A senha precisa ter mais de 6 caractéres")
@@ -36,6 +39,19 @@ export class UserRegisterComponent implements OnInit {
       this.toastr.showError("O campo e-mail é obrigatório")
     } else {
       this.loading = true
+      // this.auth.createUserWithEmailAndPassword(user.email,user.password).then(
+      //   (success) => {
+      //     this.loading = false
+      //     this.toastr.showSuccess("Cadastro realizado com sucesso !")
+      //     this.router.navigate(['/login'])
+      //   }
+      // ).catch(
+      //   (error) => {
+      //           this.loading = false
+      //           this.toastr.showError("Erro ao realizar cadastro, tente novamente.")
+      //   }
+      // )
+
       this.userService.getUsers().subscribe(
         (users: any) => {
           let userFound = users.filter(

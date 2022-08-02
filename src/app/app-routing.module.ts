@@ -11,6 +11,7 @@ import { ListLessonsComponent } from './screens/lessons/list-lessons/list-lesson
 import { LessonComponent } from './screens/lessons/lesson/lesson.component';
 import { RegisterPlatformComponent } from './screens/platforms/register-platform/register-platform.component';
 import { FavoritesComponent } from './screens/favorites/favorites.component';
+import { EditLessonComponent } from './screens/lessons/edit-lesson/edit-lesson.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
   },
   //{path: 'platforms', loadChildren: () => import('./screens/platforms/platforms.module').then((module) => module.PlatformsModule)},
   {path: 'lessons/:id', component: ListLessonsComponent},
-  {path: 'lesson/:id', component: LessonComponent}
+  {path: 'lesson/:id', component: LessonComponent},
+  {path: 'edit/lesson/:id', component: EditLessonComponent}
 ];
 
 @NgModule({

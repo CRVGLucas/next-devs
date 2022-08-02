@@ -11,10 +11,15 @@ export class HeaderComponent implements OnInit {
   public isCollapsed = true;
   hideRegister: boolean = true;
   constructor(private userService: UserService, private router: Router) { 
-    this.hideRegister = this.userService.checkUserIsAdmin()
   }
 
   ngOnInit(): void {
+    this.init()
+  }
+
+  async init(){
+    this.hideRegister = await this.userService.checkUserIsAdmin()
+
   }
 
   logout(){

@@ -1,9 +1,16 @@
 <div class="container">
     <div class="row">
-        <div class="col-10"></div>
-        <div class="col-2">
+        <div class="col-10">
             <button type="button" [ngClass]="{'btn-primary': !favorited, 'btn-secondary': favorited}" class="btn btn-sm" [disabled]="favorited" *ngIf="!hideFavorite" (click)="addToFavorites()">
                 {{ favorited ? 'Aula salva aos favoritos' : 'Adicionar Aula aos favoritos'}}
+            </button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-sm btn-warning m-2" *ngIf="hideEdit" [routerLink]="['/edit/lesson/',this.idLesson]">
+                Editar
+            </button>
+            <button type="button" class="btn btn-sm btn-danger m-2" *ngIf="hideEdit" (click)="removeLesson()">
+                Excluir
             </button>
         </div>
     </div>

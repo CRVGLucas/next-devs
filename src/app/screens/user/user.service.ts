@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import {
   CollectionReference,
   DocumentData,
@@ -20,6 +20,7 @@ export class UserService {
   usersCollection: CollectionReference<DocumentData> | any;
   usersRef: AngularFireList<any> | undefined;
   userRef: AngularFireObject<any> | undefined;
+  public isLogged: boolean = false
   constructor(private db: AngularFireDatabase, private readonly firestore: Firestore) { 
     this.usersCollection = collection(this.firestore, 'usuario');
   }
@@ -30,7 +31,12 @@ export class UserService {
 
   checkUserIsLogged(){
     const user = localStorage.getItem('next_devs@user')
-    return user ? true : false
+    //return user ? true : false
+    if(user){
+      this.isLogged = true
+      return true
+    }
+    return false
   }
 
 

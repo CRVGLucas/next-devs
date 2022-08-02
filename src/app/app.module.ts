@@ -2,6 +2,7 @@ import { ToastService } from './components/toastr/toast.service';
 import { ToastrComponent } from './components/toastr/toastr.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +38,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AuxiliaryFunctions } from './components/auxiliary-functions.service';
 import { FavoritesComponent } from './screens/favorites/favorites.component';
+import { EditLessonComponent } from './screens/lessons/edit-lesson/edit-lesson.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +55,8 @@ import { FavoritesComponent } from './screens/favorites/favorites.component';
     RegisterPlatformComponent,
     LoaderComponent,
     ToastrComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    EditLessonComponent
   ],
   imports: [
     HttpClientModule,
@@ -62,6 +65,7 @@ import { FavoritesComponent } from './screens/favorites/favorites.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule, 
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,

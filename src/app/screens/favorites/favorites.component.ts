@@ -73,9 +73,9 @@ export class FavoritesComponent implements OnInit {
 }
 
   getLessonsFavorites(){
+    this.listLessonsFavorites = []
     collectionData(this.favoritesLessonsCollection, {idField: 'id'}).subscribe(
       (favorites) => {
-        this.listLessonsFavorites = favorites
         favorites.map(
           (favorite: any) => {
             collectionData(this.lessonCollection, {idField: 'id'}).subscribe( 
