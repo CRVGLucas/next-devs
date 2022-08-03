@@ -12,6 +12,8 @@ import { LessonComponent } from './screens/lessons/lesson/lesson.component';
 import { RegisterPlatformComponent } from './screens/platforms/register-platform/register-platform.component';
 import { FavoritesComponent } from './screens/favorites/favorites.component';
 import { EditLessonComponent } from './screens/lessons/edit-lesson/edit-lesson.component';
+import { EditPlatformComponent } from './screens/platforms/edit-platform/edit-platform.component';
+import { EditLibAndFrameworkComponent } from './screens/libs-and-frameworks/edit-lib-and-framework/edit-lib-and-framework.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -20,13 +22,11 @@ const routes: Routes = [
   {path: 'register-libs-and-frameworks', component: RegisterLibsAndFrameworksComponent},
   {path: 'register-lesson', component: RegisterLessonsComponent},
   {path: 'platforms', component: PlatformsComponent},
+  {path: 'edit/platform/:id', component: EditPlatformComponent},
   {path: 'register-platform', component: RegisterPlatformComponent},
   {path: 'favorites', component: FavoritesComponent},
-  {
-    path: 'libs-and-frameworks/:id',
-    component: ListLibsAndFrameworksComponent,
-  },
-  //{path: 'platforms', loadChildren: () => import('./screens/platforms/platforms.module').then((module) => module.PlatformsModule)},
+  {path: 'libs-and-frameworks/:id',component: ListLibsAndFrameworksComponent,},
+  {path: 'edit/lib-and-framework/:id',component: EditLibAndFrameworkComponent,},
   {path: 'lessons/:id', component: ListLessonsComponent},
   {path: 'lesson/:id', component: LessonComponent},
   {path: 'edit/lesson/:id', component: EditLessonComponent}

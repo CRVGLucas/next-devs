@@ -56,7 +56,6 @@ export class FavoritesComponent implements OnInit {
         this.toastr.showSuccess('Aula removida dos favoritos')
         this.listLessonsFavorites = []
         this.getLessonsFavorites()
-
       },
       (error) => {
         this.toastr.showError('Erro ao remover a aula')

@@ -1,14 +1,19 @@
 <div class="container">
         <div class="row mb-4">
-            <div class="col-4">
-                <a class="btn btn-success btn-sm" routerLink="/register-lesson" *ngIf="hideRegister">
+            <div class="col-9">
+                <button class="btn btn-success btn-sm m-2" routerLink="/register-lesson" *ngIf="hideRegister">
                     Registrar nova aula
-                </a>
-            </div>
-            <div class="col-6"></div>
-            <div class="col-2">
+                </button>
                 <button type="button" [ngClass]="{'btn-primary': !favorited, 'btn-secondary': favorited}" class="btn btn-sm align-right" [disabled]="favorited" *ngIf="hideRegister && !hideFavorite" (click)="addToFavorites()">
                     {{ favorited ? 'Biblioteca salva aos favoritos' : 'Adicionar Biblioteca aos favoritos'}}
+                </button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-sm btn-warning m-2"  [routerLink]="['/edit/lib-and-framework/', idLibFramework]">
+                    Editar
+                </button>
+                <button type="button" class="btn btn-sm btn-danger m-2"  (click)="removeLibAndFramework()">
+                    Excluir
                 </button>
             </div>
         </div>

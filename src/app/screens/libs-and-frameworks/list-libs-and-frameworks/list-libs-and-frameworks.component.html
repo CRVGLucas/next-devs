@@ -2,15 +2,21 @@
 
 <div class="container"> 
   <div class="row" *ngIf="hideRegister">
-    <div class="col-12 col-md-9 mt-1 mb-4">
+    <div class="col-10">
       <div class="d-flex ">
-        <a
-          class="btn btn-secondary btn-sm"
-          routerLink="/register-libs-and-frameworks"
-        >
+        <button class="btn btn-secondary btn-sm" routerLink="/register-libs-and-frameworks">
           Registrar nova biblioteca ou framework
-        </a>
+        </button>
       </div>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-sm btn-warning m-2"  [routerLink]="['/edit/platform/', idPlatform]">
+        Editar
+      </button>
+
+      <button type="button" class="btn btn-sm btn-danger m-2" (click)="deletePlatform()">
+        Excluir
+      </button>
     </div>
   </div>
 
@@ -37,3 +43,4 @@
     Selicione um filtro no menu ao lado <br/>
     <span>ou <a routerLink="/register-libs-and-frameworks">crie uma nova</a></span>
   </div>
+

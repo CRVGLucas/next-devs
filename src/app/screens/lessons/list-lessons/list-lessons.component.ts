@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   CollectionReference,
   DocumentData,
@@ -12,6 +12,7 @@ import {
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
 import { UserService } from 'app/screens/user/user.service';
 import { FavoritesService } from 'app/screens/favorites/favorites.service';
+import { ToastService } from 'app/components/toastr/toast.service';
 @Component({
   selector: 'app-list-lessons',
   templateUrl: './list-lessons.component.html',
@@ -25,7 +26,7 @@ export class ListLessonsComponent implements OnInit {
   hideRegister: boolean = true;
   hideFavorite: boolean = false; 
   favorited: boolean = false;
-  constructor(private route: ActivatedRoute, private readonly firestore: Firestore, private userService: UserService, private favoriteService: FavoritesService) {
+  constructor(private route: ActivatedRoute, private router: Router, private toastr: ToastService, private readonly firestore: Firestore, private userService: UserService, private favoriteService: FavoritesService) {
     this.idLibFramework = this.route.snapshot.paramMap.get('id'); 
     this.favoritesLFCollection = collection(this.firestore, 'favorites-libs-and-frameworks'); 
     this.lessonsCollection = collection(this.firestore, 'aulas'); 
@@ -62,7 +63,30 @@ export class ListLessonsComponent implements OnInit {
 
   getLessons(){
     collectionData(this.lessonsCollection, {idField: 'id'}).subscribe(
-      (lessons) => this.lessonsList = lessons
+      (lessons) => {
+        lessons.map(
+          (lesson: any) => {
+            if(lesson.idLibFramework == this.idLibFramework){
+              console.log("lessons: ", lessons)
+              this.lessonsList = lessons
+            }
+          }
+        )
+
+      }
+    )
+  }
+
+  removeLibAndFramework() {
+    const lfReference = doc(this.firestore, `bibliotecas-e-frameworks/${this.idLibFramework}`);
+    deleteDoc(lfReference).then(
+      (success) => {
+        this.toastr.showSuccess('Deletado com sucesso')
+        this.router.navigate(['/platforms'])
+      },
+      (error) => {
+        this.toastr.showError('Erro ao deletar ')
+      }
     )
   }
 

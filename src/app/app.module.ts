@@ -39,6 +39,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { AuxiliaryFunctions } from './components/auxiliary-functions.service';
 import { FavoritesComponent } from './screens/favorites/favorites.component';
 import { EditLessonComponent } from './screens/lessons/edit-lesson/edit-lesson.component';
+import { EditPlatformComponent } from './screens/platforms/edit-platform/edit-platform.component';
+import { EditLibAndFrameworkComponent } from './screens/libs-and-frameworks/edit-lib-and-framework/edit-lib-and-framework.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +58,9 @@ import { EditLessonComponent } from './screens/lessons/edit-lesson/edit-lesson.c
     LoaderComponent,
     ToastrComponent,
     FavoritesComponent,
-    EditLessonComponent
+    EditLessonComponent,
+    EditPlatformComponent,
+    EditLibAndFrameworkComponent
   ],
   imports: [
     HttpClientModule,
