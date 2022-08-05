@@ -33,7 +33,6 @@ export class PlatformsComponent implements OnInit {
     return collectionData(this.platformsCollection, {
       idField: 'id',
     }).subscribe((plataformas: any) => {
-      console.log('plataformas: ', plataformas);
       this.platforms = plataformas;
     });
   }

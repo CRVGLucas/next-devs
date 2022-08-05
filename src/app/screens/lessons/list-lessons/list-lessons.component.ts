@@ -28,7 +28,7 @@ export class ListLessonsComponent implements OnInit {
   favorited: boolean = false;
   constructor(private route: ActivatedRoute, private router: Router, private toastr: ToastService, private readonly firestore: Firestore, private userService: UserService, private favoriteService: FavoritesService) {
     this.idLibFramework = this.route.snapshot.paramMap.get('id'); 
-    this.favoritesLFCollection = collection(this.firestore, 'favorites-libs-and-frameworks'); 
+    this.favoritesLFCollection = collection(this.firestore, 'bibliotecas-e-frameworks-favoritos');
     this.lessonsCollection = collection(this.firestore, 'aulas'); 
     this.getLessons()
     this.hideRegister = this.userService.checkUserIsAdmin()
@@ -96,7 +96,6 @@ export class ListLessonsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("lib id: ", this.idLibFramework)
   }
 
 }

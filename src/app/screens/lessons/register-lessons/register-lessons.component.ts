@@ -83,7 +83,7 @@ export class RegisterLessonsComponent implements OnInit {
   })
 
   constructor( private readonly firestore: Firestore, private toastr: ToastService, private router: Router) { 
-    this.libAndFrameworkCollection = collection(this.firestore, 'linguagens-e-frameworks');
+    this.libAndFrameworkCollection = collection(this.firestore, 'bibliotecas-e-frameworks');
     this.platformsCollection = collection(this.firestore, 'plataformas');
     this.lessonsCollection = collection(this.firestore, 'aulas');
 

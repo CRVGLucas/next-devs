@@ -33,7 +33,7 @@ export class RegisterLibsAndFrameworksComponent implements OnInit {
     this.platformsCollection = collection(this.firestore, 'plataformas');
     this.libAndFrameworkCollection = collection(
       this.firestore,
-      'linguagens-e-frameworks'
+      'bibliotecas-e-frameworks'
     );
   }
 
@@ -41,7 +41,6 @@ export class RegisterLibsAndFrameworksComponent implements OnInit {
     return collectionData(this.platformsCollection, {
       idField: 'id',
     }).subscribe((plataformas: any) => {
-      console.log('plataformas: ', plataformas);
       this.platforms = plataformas;
     });
   }
@@ -49,14 +48,12 @@ export class RegisterLibsAndFrameworksComponent implements OnInit {
   registerLibOrFramework(event: FormDataEvent) {
     event.preventDefault();
     const form = this.registerForm.value;
-    console.log('o que veio aqui: ', form);
     addDoc(this.libAndFrameworkCollection, form)
       .then((success) => {
         this.toastr.showSuccess("Cadastro realizado com sucesso !")
-        //this.route.navigate(['/platforms'])
+        this.route.navigate(['/platforms'])
       })
       .catch((error) => {
-        console.log('deu erro: ', error);
       });
   }
 

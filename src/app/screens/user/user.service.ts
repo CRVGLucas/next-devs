@@ -43,13 +43,13 @@ export class UserService {
   checkUserIsAdmin(){
     let user: any = localStorage.getItem('next_devs@user')
     if(user){
+
       user = JSON.parse(user)
       if(user.isAdmin){
         return true
       }
       return false
     }
-    console.log("Não cai nem no if")
     return false
   }
   

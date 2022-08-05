@@ -30,7 +30,7 @@ export class EditPlatformComponent implements OnInit {
 
   constructor(private readonly firestore: Firestore, private router: Router,private route: ActivatedRoute, private toastr: ToastService) {
     this.platformsCollection = collection(this.firestore, 'plataformas');
-    this.libAndFrameworkCollection = collection(this.firestore, 'linguagens-e-frameworks'); 
+    this.libAndFrameworkCollection = collection(this.firestore, 'bibliotecas-e-frameworks'); 
     this.idPlatform = this.route.snapshot.paramMap.get('id');
     this.getPlatforms()
   }
@@ -41,7 +41,6 @@ export class EditPlatformComponent implements OnInit {
         plataformas.map(
           (plataforma: any) => {
             if(plataforma.id == this.idPlatform){
-              console.log('plataforma: ', plataforma);
               this.platforms = plataforma;
               this.editForm.get('nome')?.setValue(plataforma.nome)
               this.editForm.get('logo')?.setValue(plataforma.logo)

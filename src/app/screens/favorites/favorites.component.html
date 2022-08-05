@@ -22,7 +22,7 @@
             <h4>Aulas favoritadas</h4>
         </div>
 
-        <div class="col-12 card" *ngFor="let lesson of listLessonsFavorites" class="text-center el-pointer" [routerLink]="['/lesson', lesson.id]">
+        <div class="col-12 card" *ngFor="let lesson of listLessonsFavorites" class="text-center el-pointer" [routerLink]="['/lesson', lesson.lessonId]">
             <h1>{{ lesson.title }}</h1> 
             <p [innerHTML]="toLimitText(lesson.content, 800, '...')"></p>
             <button class="btn bt-lg btn-danger" (click)="removeLessonFavorite(lesson)">Remover dos favoritos</button>

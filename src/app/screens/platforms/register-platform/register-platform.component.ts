@@ -33,7 +33,6 @@ export class RegisterPlatformComponent implements OnInit {
     return collectionData(this.platformsCollection, {
       idField: 'id',
     }).subscribe((plataformas: any) => {
-      console.log('plataformas: ', plataformas);
       //this.platforms = plataformas;
     });
   }
@@ -42,10 +41,9 @@ export class RegisterPlatformComponent implements OnInit {
     addDoc(this.platformsCollection, this.registerForm.value)
     .then((success) => {
       this.toastr.showSuccess("Cadastrou com sucesso")
-      console.log('cadastrou com sucesso !');
+      this.router.navigate(['/platforms'])
     })
     .catch((error) => {
-      console.log('deu erro: ', error);
     });
    }
 

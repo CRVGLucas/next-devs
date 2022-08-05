@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit {
     this.hideRegister = await this.userService.checkUserIsAdmin()
     this.headerService.showUserLoggedOptions.subscribe(
       (result) => {
-        console.log("result: ", result)
         this.hideRegister = result
       }
     )

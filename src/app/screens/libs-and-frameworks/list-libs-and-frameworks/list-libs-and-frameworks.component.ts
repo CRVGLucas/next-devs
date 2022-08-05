@@ -25,7 +25,7 @@ export class ListLibsAndFrameworksComponent implements OnInit {
 
   
   constructor(private route: ActivatedRoute, private router: Router, private toastr: ToastService, private readonly firestore: Firestore, private userService: UserService) {
-    this.libAndFrameworkCollection = collection(this.firestore, 'linguagens-e-frameworks'); 
+    this.libAndFrameworkCollection = collection(this.firestore, 'bibliotecas-e-frameworks'); 
     this.hideRegister = this.userService.checkUserIsAdmin() 
   }
 
@@ -39,7 +39,7 @@ export class ListLibsAndFrameworksComponent implements OnInit {
   }
 
   deleteLibsAndFrameworksOfPlatform(lib: any){
-    const lfReference = doc(this.firestore, `linguagens-e-frameworks/${lib.id}`);
+    const lfReference = doc(this.firestore, `bibliotecas-e-frameworks/${lib.id}`);
     return deleteDoc(lfReference).then(
       (success) => {
         this.toastr.showSuccess('Biblioteca deletada')
@@ -54,7 +54,6 @@ export class ListLibsAndFrameworksComponent implements OnInit {
     const platformReference = doc(this.firestore, `plataformas/${this.idPlatform}`);
     deleteDoc(platformReference).then(
       (success) => {
-        console.log("deletou: ", success)
         this.libsAndFrameworks.map(
           (lib: any) => {
             this.deleteLibsAndFrameworksOfPlatform(lib)

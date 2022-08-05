@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   postsList: any = []
   constructor(private readonly firestore: Firestore) { 
     this.postsCollection = collection(this.firestore, 'aulas');
-    this.libAndFrameworkCollection = collection(this.firestore, 'linguagens-e-frameworks');
+    this.libAndFrameworkCollection = collection(this.firestore, 'bibliotecas-e-frameworks');
   }
 
   getLessons(){
@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
               idField: 'id',
             }).subscribe((plataformas: any) => {
                var plataforma = plataformas.filter((plataforma: any) => plataforma.id == post.idLibFramework)
-               console.log("plataforma: ", plataforma) 
                post.logo = plataforma[0].logo
             });
           }
@@ -42,16 +41,6 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-
-  // getPlatformById(id){
-  //   platform
-  //   return collectionData(this.platformsCollection, {
-  //     idField: 'id',
-  //   }).subscribe((plataformas: any) => {
-  //     console.log('plataformas: ', plataformas);
-  //      = plataformas.filter((plataforma: any) => plataforma.id == id) 
-  //   });
-  // }
 
   ngOnInit(): void {
     this.getLessons()

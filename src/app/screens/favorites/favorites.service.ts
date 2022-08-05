@@ -17,8 +17,8 @@ export class FavoritesService {
   favoritesLFCollection: CollectionReference<DocumentData> | any;
   favoritesLessonsCollection: CollectionReference<DocumentData> | any;
   constructor(private readonly firestore: Firestore, private toastr: ToastService ) { 
-    this.favoritesLFCollection = collection(this.firestore, 'favorites-libs-and-frameworks'); 
-    this.favoritesLessonsCollection = collection(this.firestore, 'favorites-lessons'); 
+    this.favoritesLFCollection = collection(this.firestore, 'bibliotecas-e-frameworks-favoritos'); 
+    this.favoritesLessonsCollection = collection(this.firestore, 'aulas-favoritas'); 
   }
 
   saveLibAndFrameworkToFavorites(userId: any, idLibFramework: any){

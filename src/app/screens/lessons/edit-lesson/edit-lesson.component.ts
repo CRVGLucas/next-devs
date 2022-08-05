@@ -85,7 +85,7 @@ export class EditLessonComponent implements OnInit {
   })
 
   constructor( private readonly firestore: Firestore, private userService: UserService,private toastr: ToastService, private route: ActivatedRoute, private router: Router) { 
-    this.libAndFrameworkCollection = collection(this.firestore, 'linguagens-e-frameworks');
+    this.libAndFrameworkCollection = collection(this.firestore, 'bibliotecas-e-frameworks');
     this.platformsCollection = collection(this.firestore, 'plataformas');
     this.lessonCollection = collection(this.firestore, 'aulas');
     this.idLesson = this.route.snapshot.paramMap.get('id'); 
@@ -103,7 +103,6 @@ export class EditLessonComponent implements OnInit {
         lessons.map(
           (lesson: any) => {
             if(lesson.id == this.idLesson){
-              console.log("achou: ", lesson)
               this.lesson = lesson
               this.editForm.get('title')?.setValue(lesson.title)
               this.editForm.get('content')?.setValue(lesson.content)
@@ -113,7 +112,6 @@ export class EditLessonComponent implements OnInit {
             }
           }
         )
-        console.log("lesson: ", this.lesson)
       }
     )
   }

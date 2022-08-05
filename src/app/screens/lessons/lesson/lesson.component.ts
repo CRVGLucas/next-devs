@@ -30,7 +30,7 @@ export class LessonComponent implements OnInit {
   constructor(private route: ActivatedRoute, private toastr: ToastService, private readonly firestore: Firestore, private userService: UserService, private favoriteService: FavoritesService) {
     this.idLesson = this.route.snapshot.paramMap.get('id'); 
     this.lessonCollection = collection(this.firestore, 'aulas');
-    this.favoritesLessonsCollection = collection(this.firestore, 'favorites-lessons'); 
+    this.favoritesLessonsCollection = collection(this.firestore, 'aulas-favoritas'); 
     this.getLessons()
     this.hideFavorite = this.checkIfLessonIsFavorited()
     this.hideEdit = this.userService.checkUserIsAdmin()
@@ -62,7 +62,6 @@ export class LessonComponent implements OnInit {
     if(this.userService.checkUserIsLogged()){
       collectionData(this.favoritesLessonsCollection, {idField: 'id'}).subscribe(
         (favorites) => {
-          console.log("favorites: ", favorites)
           favorites.map(
             (favorite: any) => {
               if(favorite.lessonId == this.idLesson && favorite.userId == user.id){
@@ -88,7 +87,6 @@ export class LessonComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("conteúdo da aula aqui: ", this.lesson) 
   }
 
 }

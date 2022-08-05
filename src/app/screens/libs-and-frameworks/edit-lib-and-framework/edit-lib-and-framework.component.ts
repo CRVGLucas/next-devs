@@ -35,7 +35,7 @@ export class EditLibAndFrameworkComponent implements OnInit {
     this.platformsCollection = collection(this.firestore, 'plataformas');
     this.libAndFrameworkCollection = collection(
       this.firestore,
-      'linguagens-e-frameworks'
+      'bibliotecas-e-frameworks'
     );
     this.getPlatforms()
   }
@@ -43,11 +43,9 @@ export class EditLibAndFrameworkComponent implements OnInit {
   getLibAndFramework(){
     collectionData(this.libAndFrameworkCollection, {idField: 'id'}).subscribe(
       (query) => {
-        console.log("queryyy: ", query)
         query.map(
           (queryItem: any) => {
             if(queryItem.id == this.idLibFramework){
-              console.log("query: ", queryItem)
               this.libAndFramework = queryItem
               this.editForm.get("name")?.setValue(queryItem.name)
               this.editForm.get("description")?.setValue(queryItem.description)
@@ -73,7 +71,7 @@ export class EditLibAndFrameworkComponent implements OnInit {
     updateDoc(editLFReference, { ...this.editForm.value }).then(
       (success) => {
         this.toastr.showSuccess("Editado com sucesso !")
-        //this.router.navigate(['/platforms'])
+        this.router.navigate(['/platforms'])
       }
     ).catch(
       (error) => {

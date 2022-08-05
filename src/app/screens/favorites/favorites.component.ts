@@ -24,10 +24,10 @@ export class FavoritesComponent implements OnInit {
   listLessonsFavorites: any = []
   user: any
   constructor(private readonly firestore: Firestore, private toastr: ToastService) { 
-    this.favoritesLFCollection = collection(this.firestore, 'favorites-libs-and-frameworks'); 
-    this.favoritesLessonsCollection = collection(this.firestore, 'favorites-lessons'); 
+    this.favoritesLFCollection = collection(this.firestore, 'bibliotecas-e-frameworks-favoritos'); 
+    this.favoritesLessonsCollection = collection(this.firestore, 'aulas-favoritas'); 
     this.lessonCollection = collection(this.firestore, 'aulas');
-    this.libAndFrameworkCollection = collection(this.firestore, 'linguagens-e-frameworks');
+    this.libAndFrameworkCollection = collection(this.firestore, 'bibliotecas-e-frameworks');
     this.user = localStorage.getItem('next_devs@user')
     this.getLessonsFavorites()
     this.getLFFavorites()
@@ -36,8 +36,7 @@ export class FavoritesComponent implements OnInit {
   }
 
   removeLFFavorite(favorite: any){
-    console.log("favorite: ", favorite)
-    const libAndFrameworkReference = doc(this.firestore, `favorites-libs-and-frameworks/${favorite.id}`);
+    const libAndFrameworkReference = doc(this.firestore, `bibliotecas-e-frameworks-favoritos/${favorite.id}`);
     return deleteDoc(libAndFrameworkReference).then(
       (success) => {
         this.toastr.showSuccess('biblioteca removida dos favoritos')
@@ -51,7 +50,7 @@ export class FavoritesComponent implements OnInit {
     )
   }
   removeLessonFavorite(favorite: any){
-    const lessonReference = doc(this.firestore, `favorites-lessons/${favorite.id}`);
+    const lessonReference = doc(this.firestore, `aulas-favoritas/${favorite.id}`);
     return deleteDoc(lessonReference).then(
       (success) => {
         this.toastr.showSuccess('Aula removida dos favoritos')
