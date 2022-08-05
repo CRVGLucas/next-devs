@@ -22,12 +22,13 @@ export class FavoritesComponent implements OnInit {
   libAndFrameworkCollection: CollectionReference<DocumentData> | any;
   listLFFavorites: any = []
   listLessonsFavorites: any = []
+  user: any
   constructor(private readonly firestore: Firestore, private toastr: ToastService) { 
     this.favoritesLFCollection = collection(this.firestore, 'favorites-libs-and-frameworks'); 
     this.favoritesLessonsCollection = collection(this.firestore, 'favorites-lessons'); 
     this.lessonCollection = collection(this.firestore, 'aulas');
     this.libAndFrameworkCollection = collection(this.firestore, 'linguagens-e-frameworks');
-
+    this.user = localStorage.getItem('next_devs@user')
     this.getLessonsFavorites()
     this.getLFFavorites()
     this.hasDuplicates(this.listLessonsFavorites)
@@ -73,49 +74,56 @@ export class FavoritesComponent implements OnInit {
 
   getLessonsFavorites(){
     this.listLessonsFavorites = []
+    let user = JSON.parse(this.user)
     collectionData(this.favoritesLessonsCollection, {idField: 'id'}).subscribe(
       (favorites) => {
         favorites.map(
           (favorite: any) => {
-            collectionData(this.lessonCollection, {idField: 'id'}).subscribe( 
-              (lessons) => {
-                lessons.map(
-                  (lesson: any) => {
-                    if(lesson.id == favorite.lessonId){
-                      favorite.title = lesson.title
-                      favorite.content = lesson.content
-                      favorite.itemId = lesson.id
-                      this.listLessonsFavorites.push(favorite)
-                    }
-                  } 
-                )
-              }
-            )
+            if(favorite.userId == user.id){
+              collectionData(this.lessonCollection, {idField: 'id'}).subscribe( 
+                (lessons) => {
+                  lessons.map(
+                    (lesson: any) => {
+                      if(lesson.id == favorite.lessonId){
+                        favorite.title = lesson.title
+                        favorite.content = lesson.content
+                        favorite.itemId = lesson.id
+                        this.listLessonsFavorites.push(favorite)
+                      }
+                    } 
+                  )
+                }
+              )
+            }
+    
           }
         )
       }
     )
   }
   getLFFavorites(){
+    let user = JSON.parse(this.user)
     collectionData(this.favoritesLFCollection, {idField: 'id'}).subscribe(
       (favorites) => {
         favorites.map(
           (favorite: any) => {
-            collectionData(this.libAndFrameworkCollection, {idField: 'id'}).subscribe(
-              (query: any) => {
-                query.map(
-                  (queryItem: any) => {
-                    if(queryItem.id == favorite.libAndFrameworkId){
-                      favorite.logo = queryItem.logo
-                      favorite.name = queryItem.name
-                      favorite.description = queryItem.description
-                      favorite.itemId = queryItem.id
-                      this.listLFFavorites.push(favorite)
+            if(favorite.userId == user.id){
+              collectionData(this.libAndFrameworkCollection, {idField: 'id'}).subscribe(
+                (query: any) => {
+                  query.map(
+                    (queryItem: any) => {
+                      if(queryItem.id == favorite.libAndFrameworkId){
+                        favorite.logo = queryItem.logo
+                        favorite.name = queryItem.name
+                        favorite.description = queryItem.description
+                        favorite.itemId = queryItem.id
+                        this.listLFFavorites.push(favorite)
+                      }
                     }
-                  }
-                )
-              }
-            )  
+                  )
+                }
+              )  
+            }
           }
         )
       }
@@ -123,7 +131,7 @@ export class FavoritesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.user = JSON.parse(this.user)
   }
 
 }

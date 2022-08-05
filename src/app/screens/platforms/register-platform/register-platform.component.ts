@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   CollectionReference,
   DocumentData,
@@ -21,7 +21,7 @@ export class RegisterPlatformComponent implements OnInit {
   platformsCollection: CollectionReference<DocumentData> | any;
 
   registerForm: FormGroup = new FormGroup({
-    nome: new FormControl(''),
+    nome: new FormControl('', Validators.required),
     logo: new FormControl(''),
   });
 
@@ -39,15 +39,15 @@ export class RegisterPlatformComponent implements OnInit {
   }
 
   registerPlatform(form: any){
-    addDoc(this.platformsCollection, form)
+    addDoc(this.platformsCollection, this.registerForm.value)
     .then((success) => {
+      this.toastr.showSuccess("Cadastrou com sucesso")
       console.log('cadastrou com sucesso !');
-      this.router.navigate(['/platforms'])
     })
     .catch((error) => {
       console.log('deu erro: ', error);
     });
-  }
+   }
 
   ngOnInit(): void {
   }

@@ -30,28 +30,12 @@ export class UserRegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   registerUser(user: User){
-
-
-    
     if(user.password.length < 6){
-      this.toastr.showError("A senha precisa ter mais de 6 caractéres")
+      this.toastr.showError("A senha precisa ter mais de 6 caracteres")
     } else if(!user.email){
       this.toastr.showError("O campo e-mail é obrigatório")
     } else {
       this.loading = true
-      // this.auth.createUserWithEmailAndPassword(user.email,user.password).then(
-      //   (success) => {
-      //     this.loading = false
-      //     this.toastr.showSuccess("Cadastro realizado com sucesso !")
-      //     this.router.navigate(['/login'])
-      //   }
-      // ).catch(
-      //   (error) => {
-      //           this.loading = false
-      //           this.toastr.showError("Erro ao realizar cadastro, tente novamente.")
-      //   }
-      // )
-
       this.userService.getUsers().subscribe(
         (users: any) => {
           let userFound = users.filter(
@@ -59,23 +43,21 @@ export class UserRegisterComponent implements OnInit {
               return userList.email == user.email
             }
           )
-
           if(userFound && userFound.length > 0){
             this.loading = false
             this.toastr.showError("Uma conta já foi cadastrada com este e-mail, tente usar outro e-mail.")
+            return
           } else {
             user.createdAt =  new Date()
             this.userService.newUser(user).then(
               (success) => {
                 this.loading = false
                 this.toastr.showSuccess("Cadastro realizado com sucesso !")
-
                 this.router.navigate(['/login'])
               }
             ).catch(
               (error) => {
                 this.loading = false
-                this.toastr.showError("Erro ao realizar cadastro, tente novamente.")
               }
             )
           }

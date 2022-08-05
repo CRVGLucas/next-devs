@@ -41,6 +41,7 @@ import { FavoritesComponent } from './screens/favorites/favorites.component';
 import { EditLessonComponent } from './screens/lessons/edit-lesson/edit-lesson.component';
 import { EditPlatformComponent } from './screens/platforms/edit-platform/edit-platform.component';
 import { EditLibAndFrameworkComponent } from './screens/libs-and-frameworks/edit-lib-and-framework/edit-lib-and-framework.component';
+import { UserInfoComponent } from './screens/user/user-info/user-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +61,8 @@ import { EditLibAndFrameworkComponent } from './screens/libs-and-frameworks/edit
     FavoritesComponent,
     EditLessonComponent,
     EditPlatformComponent,
-    EditLibAndFrameworkComponent
+    EditLibAndFrameworkComponent,
+    UserInfoComponent
   ],
   imports: [
     HttpClientModule,

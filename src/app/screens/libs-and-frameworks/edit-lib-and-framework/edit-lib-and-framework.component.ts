@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   CollectionReference,
   DocumentData,
@@ -24,24 +24,30 @@ export class EditLibAndFrameworkComponent implements OnInit {
   platforms: any;
   libAndFramework: any
   editForm: FormGroup = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', Validators.required),
     description: new FormControl(''),
     logo: new FormControl(''),
-    idPlatform: new FormControl(''),
+    idPlatform: new FormControl('', Validators.required),
   });
 
   constructor(private readonly firestore: Firestore, private toastr: ToastService, private router: Router, private route: ActivatedRoute) {
     this.idLibFramework = this.route.snapshot.paramMap.get('id'); 
-    this.getLibAndFramework()
+    this.platformsCollection = collection(this.firestore, 'plataformas');
+    this.libAndFrameworkCollection = collection(
+      this.firestore,
+      'linguagens-e-frameworks'
+    );
     this.getPlatforms()
   }
 
   getLibAndFramework(){
     collectionData(this.libAndFrameworkCollection, {idField: 'id'}).subscribe(
-      (query: any) => {
+      (query) => {
+        console.log("queryyy: ", query)
         query.map(
           (queryItem: any) => {
             if(queryItem.id == this.idLibFramework){
+              console.log("query: ", queryItem)
               this.libAndFramework = queryItem
               this.editForm.get("name")?.setValue(queryItem.name)
               this.editForm.get("description")?.setValue(queryItem.description)
@@ -66,8 +72,8 @@ export class EditLibAndFrameworkComponent implements OnInit {
     const editLFReference = doc(this.firestore,`linguagens-e-frameworks/${this.idLibFramework}`);
     updateDoc(editLFReference, { ...this.editForm.value }).then(
       (success) => {
-        this.toastr.showSuccess("Aula editada com sucesso !")
-        this.router.navigate(['/platforms'])
+        this.toastr.showSuccess("Editado com sucesso !")
+        //this.router.navigate(['/platforms'])
       }
     ).catch(
       (error) => {
@@ -77,6 +83,8 @@ export class EditLibAndFrameworkComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getLibAndFramework()
+
   }
 
 }

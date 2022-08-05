@@ -44,12 +44,14 @@ export class ListLessonsComponent implements OnInit {
 
   checkIfLibFrameworkIsFavorited(){
     let isFavorited: boolean = false
+    let user: any = localStorage.getItem('next_devs@user')
+    user = JSON.parse(user)
     if(this.userService.checkUserIsLogged()){
       collectionData(this.favoritesLFCollection, {idField: 'id'}).subscribe(
         (favorites) => {
           favorites.map(
             (favorite: any) => {
-              if(favorite.libAndFrameworkId == this.idLibFramework){
+              if(favorite.libAndFrameworkId == this.idLibFramework && favorite.userId == user.id){
                 isFavorited = true
                 this.favorited = true
               }
@@ -67,8 +69,7 @@ export class ListLessonsComponent implements OnInit {
         lessons.map(
           (lesson: any) => {
             if(lesson.idLibFramework == this.idLibFramework){
-              console.log("lessons: ", lessons)
-              this.lessonsList = lessons
+              this.lessonsList.push(lesson)
             }
           }
         )

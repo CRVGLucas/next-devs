@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   CollectionReference,
   DocumentData,
@@ -24,7 +24,7 @@ export class EditPlatformComponent implements OnInit {
   platforms: any;
   libsAndFrameworks: any = []
   editForm: FormGroup = new FormGroup({
-    nome: new FormControl(''),
+    nome: new FormControl('', Validators.required),
     logo: new FormControl(''),
   });
 
@@ -68,11 +68,11 @@ export class EditPlatformComponent implements OnInit {
  
 
   editPlatform(){
-    const editLFReference = doc(this.firestore,`plataformas/${this.idPlatform}`);
-    updateDoc(editLFReference, { ...this.editForm.value }).then(
+    const editPlatformReference = doc(this.firestore,`plataformas/${this.idPlatform}`);
+    updateDoc(editPlatformReference, { ...this.editForm.value }).then(
       (success) => {
-        this.toastr.showSuccess("Aula editada com sucesso !")
-        this.router.navigate(['/platforms'])
+        this.toastr.showSuccess("Plataforma editada com sucesso !")
+        //this.router.navigate(['/platforms'])
       }
     ).catch(
       (error) => {

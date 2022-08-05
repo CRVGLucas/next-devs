@@ -57,13 +57,15 @@ export class LessonComponent implements OnInit {
 
   checkIfLessonIsFavorited(){
     let isFavorited: boolean = false
+    let user: any = localStorage.getItem('next_devs@user')
+    user = JSON.parse(user)
     if(this.userService.checkUserIsLogged()){
       collectionData(this.favoritesLessonsCollection, {idField: 'id'}).subscribe(
         (favorites) => {
           console.log("favorites: ", favorites)
           favorites.map(
             (favorite: any) => {
-              if(favorite.lessonId == this.idLesson){
+              if(favorite.lessonId == this.idLesson && favorite.userId == user.id){
                 isFavorited = true
                 this.favorited = true
               }

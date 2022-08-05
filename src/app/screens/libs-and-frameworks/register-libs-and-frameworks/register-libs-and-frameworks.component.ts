@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   CollectionReference,
   DocumentData,
@@ -24,10 +24,10 @@ export class RegisterLibsAndFrameworksComponent implements OnInit {
   platforms: any;
 
   registerForm: FormGroup = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', Validators.required),
     description: new FormControl(''),
     logo: new FormControl(''),
-    idPlatform: new FormControl(''),
+    idPlatform: new FormControl('',Validators.required),
   });
   constructor(private readonly firestore: Firestore, private toastr: ToastService, private route: Router) {
     this.platformsCollection = collection(this.firestore, 'plataformas');
@@ -53,7 +53,7 @@ export class RegisterLibsAndFrameworksComponent implements OnInit {
     addDoc(this.libAndFrameworkCollection, form)
       .then((success) => {
         this.toastr.showSuccess("Cadastro realizado com sucesso !")
-        this.route.navigate(['/platforms'])
+        //this.route.navigate(['/platforms'])
       })
       .catch((error) => {
         console.log('deu erro: ', error);

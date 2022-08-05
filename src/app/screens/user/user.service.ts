@@ -44,9 +44,7 @@ export class UserService {
     let user: any = localStorage.getItem('next_devs@user')
     if(user){
       user = JSON.parse(user)
-      console.log("user: ", user)
       if(user.isAdmin){
-        console.log("é admin")
         return true
       }
       return false

@@ -5,7 +5,7 @@
           [formGroup]="editForm"
           (ngSubmit)="editPlatform()"
         >
-          <h3 class="text-center text-muted mb-3">Informe os dados da nova plataforma</h3>
+          <h3 class="text-center text-muted mb-3">Editar plataforma</h3>
           <div class="form-floating mb-3">
             <input
               type="name"
@@ -18,13 +18,12 @@
           </div>
   
           <div class="form-floating mb-3">
-            <textarea
+            <input
               formControlName="logo"
               class="form-control"
               placeholder="URL da imagem"
               id="floatingTextarea2"
-              rows="5"
-            ></textarea>
+            />
             <label for="floatingTextarea2">URL da imagem</label>
           </div>
   

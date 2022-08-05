@@ -14,10 +14,12 @@ import { FavoritesComponent } from './screens/favorites/favorites.component';
 import { EditLessonComponent } from './screens/lessons/edit-lesson/edit-lesson.component';
 import { EditPlatformComponent } from './screens/platforms/edit-platform/edit-platform.component';
 import { EditLibAndFrameworkComponent } from './screens/libs-and-frameworks/edit-lib-and-framework/edit-lib-and-framework.component';
+import { UserInfoComponent } from './screens/user/user-info/user-info.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: UserLoginComponent},
+  {path: 'edit/user', component: UserInfoComponent},
   {path: 'register', component: UserRegisterComponent},
   {path: 'register-libs-and-frameworks', component: RegisterLibsAndFrameworksComponent},
   {path: 'register-lesson', component: RegisterLessonsComponent},

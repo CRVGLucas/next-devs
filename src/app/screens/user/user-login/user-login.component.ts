@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ToastService } from 'app/components/toastr/toast.service';
 import { User } from '../user.interface';
 import { UserService } from '../user.service';
+import { HeaderService } from 'app/components/header/header.service';
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -19,22 +20,13 @@ export class UserLoginComponent implements OnInit {
     password: new FormControl(''),
   })
 
-  constructor(private readonly firestore: Firestore, private auth: AngularFireAuth, private route: Router,private userService: UserService, private toastr: ToastService) { }
+  constructor(private readonly firestore: Firestore, private headerService: HeaderService, private auth: AngularFireAuth, private route: Router,private userService: UserService, private toastr: ToastService) { }
   loading: boolean = false
   ngOnInit(): void {
   }
 
   loginUser(user: User){
     this.loading = true
-    // this.auth.signInWithEmailAndPassword(user.email, user.password).then(
-    //   (loginSuccess) => {
-    //     console.log("loginSucces: ", loginSuccess)
-    //   }
-    // ).catch(
-    //   (error) => {
-
-    //   }
-    // )
     this.userService.getUsers().subscribe(
       (users: any) => {
         let userExist = users.find(
@@ -44,10 +36,10 @@ export class UserLoginComponent implements OnInit {
         ) 
         this.loading = false
         if(userExist){
-          console.log("Usuário: ", userExist)
           localStorage.setItem('next_devs@user', JSON.stringify(userExist))
           this.toastr.showSuccess("Login realizado com sucesso !")
           this.userService.isLogged = true
+          this.headerService.updateResultList(true)
           this.route.navigate(['/'])
         } else {
           this.toastr.showError("Usuário ou senha incorretos.")

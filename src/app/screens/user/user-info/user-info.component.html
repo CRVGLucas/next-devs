@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-4 col-12 offset-md-4">
+        <form
+          [formGroup]="editForm"
+          (ngSubmit)="editUsers()"
+          class="my-5"
+        >
+          <h2 class="text-center mb-2 text-muted">Editar dados do usuário</h2>
+          <div class="form-floating mb-3">
+            <input
+              type="name"
+              class="form-control"
+              id="floatingInput"
+              formControlName="name"
+              placeholder="name@example.com"
+            />
+            <label for="floatingInput">Nome</label>
+          </div>
+  
+          <div class="form-floating mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="floatingInput"
+              formControlName="email"
+              placeholder="name@example.com"
+            />
+            <label for="floatingInput">E-mail</label>
+          </div>
+  
+          <div class="form-floating">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+              id="floatingPassword"
+              placeholder="Senha"
+            />
+            <label for="floatingPassword">Senha</label>
+          </div>
+
+          <div>
+            <button
+              class="btn btn-success btn-lg w-100 btn-block mt-4"
+              type="submit"
+              [disabled]="editForm.invalid"
+            >
+              Editar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <app-loader [loading]="loading"></app-loader>
