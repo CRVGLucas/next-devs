@@ -31,26 +31,23 @@ export class UserService {
 
   checkUserIsLogged(){
     const user = localStorage.getItem('next_devs@user')
-    //return user ? true : false
+    const isOnline: boolean = false
     if(user){
       this.isLogged = true
-      return true
+      isOnline = true
     }
-    return false
+    return isOnline
   }
 
 
   checkUserIsAdmin(){
     let user: any = localStorage.getItem('next_devs@user')
+    let isAdmin: boolean = false
     if(user){
-
       user = JSON.parse(user)
-      if(user.isAdmin){
-        return true
-      }
-      return false
+      isAdmin = user.isAdmin ? true : false
     }
-    return false
+    return isAdmin
   }
   
 

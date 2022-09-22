@@ -42,31 +42,57 @@ export class UserInfoComponent implements OnInit {
   }
 
   editUsers(){
-    const editUserReference = doc(this.firestore,`usuario/${this.user.id}`);
-    updateDoc(editUserReference, { ...this.editForm.value }).then(
-      (success) => {
+    if(this.editForm.get('email')?.value !== '' && this.editForm.get('password')?.value !== ''){
+
+      if(this.editForm.get('email')?.value.length > 6){
         this.userService.getUsers().subscribe(
-          (users: any) => {
+            (users: any) => {
             let userExist = users.find(
               (userFind: any) => {
-                return this.user.id == userFind.id
+                return  this.editForm.get('email')?.value == userFind.email && this.user.id != userFind.id
               }
             ) 
             this.loading = false
             if(userExist){
               localStorage.setItem('next_devs@user', JSON.stringify(userExist))
-              this.toastr.showSuccess("usuário alterado com sucesso !")
-              this.headerService.updateResultList(true)
-              this.router.navigate(['/'])
+              this.toastr.showError("email já existe")
+            } else {
+              const editUserReference = doc(this.firestore,`usuario/${this.user.id}`);
+              updateDoc(editUserReference, { ...this.editForm.value }).then(
+                (success) => {
+                  this.userService.getUsers().subscribe(
+                    (users: any) => {
+                      let userExist = users.find(
+                        (userFind: any) => {
+                          return this.user.id == userFind.id
+                        }
+                      ) 
+                      this.loading = false
+                      if(userExist){
+                        localStorage.setItem('next_devs@user', JSON.stringify(userExist))
+                        this.toastr.showSuccess("usuário alterado com sucesso !")
+                        this.headerService.updateResultList(true)
+                        this.router.navigate(['/'])
+                      }
+                    }
+                  )
+                }
+              ).catch(
+                (error) => {
+          
+                }
+              )
             }
           }
         )
+      } else {
+        this.toastr.showSuccess("a senha deve ser maior que 6 caractéres")
       }
-    ).catch(
-      (error) => {
 
-      }
-    )
+    } else {
+      this.toastr.showSuccess("usuário alterado com sucesso !")
+    }
+
   }
 
 }

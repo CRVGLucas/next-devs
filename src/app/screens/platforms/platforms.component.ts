@@ -27,6 +27,7 @@ export class PlatformsComponent implements OnInit {
   ngOnInit(): void {
     this.getPlatforms();
     this.hideRegister = this.userService.checkUserIsAdmin()
+    console.log("hideRegister: ", this.hideRegister)
   }
 
   getPlatforms() {
