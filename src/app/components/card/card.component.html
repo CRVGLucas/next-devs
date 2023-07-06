@@ -1,0 +1,11 @@
+<div class="card" [routerLink]="['/'+type, post.id]">
+    <div class="card-body">
+        <img class="card-img" [src]="post.logo" alt="">
+    </div>
+    <div class="card-bottom">
+        <h5 class="text-center">{{ post.title || post.nome || post.name }}</h5>
+    </div>
+    <!-- <div *ngIf="post.description">
+        <small class="card-text" [innerHTML]="toLimitText(post.description, 110, '...')"></small>
+    </div> -->
+</div>

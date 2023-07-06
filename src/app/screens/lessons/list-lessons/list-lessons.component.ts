@@ -23,15 +23,17 @@ export class ListLessonsComponent implements OnInit {
   lessonsCollection: CollectionReference<DocumentData> | any;
   favoritesLFCollection: CollectionReference<DocumentData> | any;
   lessonsList: any = []
-  hideRegister: boolean = true;
+  isAdmin: boolean = false;
   hideFavorite: boolean = false; 
   favorited: boolean = false;
+  isLogged: boolean = false;
   constructor(private route: ActivatedRoute, private router: Router, private toastr: ToastService, private readonly firestore: Firestore, private userService: UserService, private favoriteService: FavoritesService) {
     this.idLibFramework = this.route.snapshot.paramMap.get('id'); 
     this.favoritesLFCollection = collection(this.firestore, 'bibliotecas-e-frameworks-favoritos');
     this.lessonsCollection = collection(this.firestore, 'aulas'); 
     this.getLessons()
-    this.hideRegister = this.userService.checkUserIsAdmin()
+    this.isLogged = localStorage.getItem('next_devs@user') ? true : false;
+    this.isAdmin = this.userService.checkUserIsAdmin()
     this.hideFavorite = this.checkIfLibFrameworkIsFavorited()
   }
 

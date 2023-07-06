@@ -1,0 +1,27 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+
+.header-platforms {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.button-add {
+    border: 1px solid rgb(154, 189, 101);
+    border-radius: 8px;
+    text-decoration: none;
+    color: rgb(154, 189, 101);
+    margin: 10px auto;
+    padding: 10px;
+}
+
+
+.icone {
+    fill: rgb(154, 189, 101); /* Define a cor de preenchimento do ícone */
+    width: 30px; /* Define a largura do ícone */
+    height: 30px; /* Define a altura do ícone */
+}

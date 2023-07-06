@@ -1,6 +1,4 @@
 .container {
-    padding: 50px;
-    display: flex;
-    justify-content: center;
-    width:100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
 }

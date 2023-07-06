@@ -42,6 +42,7 @@ import { EditLessonComponent } from './screens/lessons/edit-lesson/edit-lesson.c
 import { EditPlatformComponent } from './screens/platforms/edit-platform/edit-platform.component';
 import { EditLibAndFrameworkComponent } from './screens/libs-and-frameworks/edit-lib-and-framework/edit-lib-and-framework.component';
 import { UserInfoComponent } from './screens/user/user-info/user-info.component';
+import { CardComponent } from './components/card/card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,8 @@ import { UserInfoComponent } from './screens/user/user-info/user-info.component'
     EditLessonComponent,
     EditPlatformComponent,
     EditLibAndFrameworkComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    CardComponent
   ],
   imports: [
     HttpClientModule,

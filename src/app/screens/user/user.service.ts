@@ -31,7 +31,7 @@ export class UserService {
 
   checkUserIsLogged(){
     const user = localStorage.getItem('next_devs@user')
-    const isOnline: boolean = false
+    var isOnline: boolean = false
     if(user){
       this.isLogged = true
       isOnline = true

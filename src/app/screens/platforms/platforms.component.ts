@@ -19,15 +19,14 @@ import { UserService } from '../user/user.service';
 export class PlatformsComponent implements OnInit {
   platformsCollection: CollectionReference<DocumentData> | any;
   platforms: any;
-  hideRegister: boolean = true;
+  isAdmin: boolean = false;
   constructor(private readonly firestore: Firestore, private userService: UserService) {
     this.platformsCollection = collection(this.firestore, 'plataformas');
   }
 
   ngOnInit(): void {
     this.getPlatforms();
-    this.hideRegister = this.userService.checkUserIsAdmin()
-    console.log("hideRegister: ", this.hideRegister)
+    this.isAdmin = this.userService.checkUserIsAdmin()
   }
 
   getPlatforms() {

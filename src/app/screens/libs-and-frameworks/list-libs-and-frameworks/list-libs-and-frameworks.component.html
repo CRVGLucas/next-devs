@@ -1,7 +1,7 @@
 
 
-<div class="container"> 
-  <div class="row" *ngIf="hideRegister">
+<div class="container" [ngPlural]="libsAndFrameworks.length" > 
+  <div class="row" *ngIf="isAdmin">
     <div class="col-10">
       <div class="d-flex ">
         <button class="btn btn-secondary btn-sm" routerLink="/register-libs-and-frameworks">
@@ -20,27 +20,23 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-4" *ngFor="let libAndFramework of libsAndFrameworks">
-      <div class="card" [routerLink]="['/lessons', libAndFramework.id]">
-        <div class="card-body">
-            <img *ngIf="libAndFramework.logo" class="card-img-top" width="250" height="180" [src]="libAndFramework.logo" alt="">
-            <p class="card-title">{{ libAndFramework.name }}</p>
-            <small class="card-text" [innerHTML]="toLimitText(libAndFramework.description, 110, '...')"></small>
-        </div>
+  <ng-template #noList ngPluralCase="=0">
+    <div class="alert alert-warning my-4 w-50 text-center mx-auto">
+      Nenhuma informação encontrada. <br />
+      Selicione um filtro no menu ao lado <br/>
+      <span *ngIf="isAdmin">ou <a routerLink="/register-libs-and-frameworks">crie uma nova</a></span>
+    </div>
+  </ng-template>
+
+  <ng-template #list ngPluralCase="other">
+    <div class="row">
+      <div class="col-4" *ngFor="let libAndFramework of libsAndFrameworks">
+        <app-card [post]="libAndFramework" type="lessons"></app-card>
       </div>
     </div>
-  </div>
+  </ng-template>
+
 </div>
 
 
-  
-  <div
-    class="alert alert-warning my-4 w-50 text-center mx-auto"
-    *ngIf="libsAndFrameworks.length === 0"
-  >
-    Nenhuma informação encontrada. <br />
-    Selicione um filtro no menu ao lado <br/>
-    <span>ou <a routerLink="/register-libs-and-frameworks">crie uma nova</a></span>
-  </div>
 

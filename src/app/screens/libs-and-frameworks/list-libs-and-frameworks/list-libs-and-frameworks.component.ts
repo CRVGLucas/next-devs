@@ -21,12 +21,12 @@ export class ListLibsAndFrameworksComponent implements OnInit {
   idPlatform: any
   libAndFrameworkCollection: CollectionReference<DocumentData> | any;
   libsAndFrameworks: any = []
-  hideRegister: boolean = true; 
+  isAdmin: boolean = false; 
 
   
   constructor(private route: ActivatedRoute, private router: Router, private toastr: ToastService, private readonly firestore: Firestore, private userService: UserService) {
     this.libAndFrameworkCollection = collection(this.firestore, 'bibliotecas-e-frameworks'); 
-    this.hideRegister = this.userService.checkUserIsAdmin() 
+    this.isAdmin = this.userService.checkUserIsAdmin() 
   }
 
   ngOnInit(): void {

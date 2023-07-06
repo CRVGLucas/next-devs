@@ -1,32 +1,17 @@
+<div class="header-platforms">
+  <a 
+    class="button-add"
+    *ngIf="isAdmin" 
+    routerLink="/register-platform"
+  > 
+      Registrar nova plataforma
+  </a>
+</div>
+
+
+
 <div class="container">
-    <div class="row mb-2">
-
-      <div class="col-3">
-        <h4 class="text-muted mb-2">Plataformas</h4>
-      </div>
-
-      <div class="col-12 col-md-9 mt-1" *ngIf="hideRegister">
-        <div class="d-flex align-items-center justify-content-end">
-          <a
-            class="btn btn-secondary btn-sm"
-            routerLink="/register-platform"
-          >
-            Registrar plataforma
-          </a>
-        </div>
-      </div>
-
-    </div>  
-
-    <div class="row">
-      <div class="col-4" *ngFor="let platform of platforms" [routerLink]="['/libs-and-frameworks/', platform.id]">
-        <div class="card">
-          <div class="card-body">
-              <img class="card-img-top" width="400" height="250" [src]="platform.logo" alt="">
-              <h3 class="text-center">{{ platform.nome }}</h3>
-          </div>
-      </div>  
-    </div>      
-
-    
-  </div>
+  <div *ngFor="let platform of platforms">
+    <app-card [post]="platform" type="libs-and-frameworks"></app-card>
+  </div>      
+</div>
