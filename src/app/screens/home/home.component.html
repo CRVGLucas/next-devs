@@ -1,4 +1,11 @@
-<h2 class="text-center mb-2">Últimos posts</h2>
+<h1 class="text-center mb-2">Últimos posts</h1>
 <div class="container">
-    <app-card *ngFor="let post of postsList" [post]="post" type="lesson"></app-card>
+    <ng-template [ngIf]="postsList && postsList.length > 0">
+      <app-card *ngFor="let post of postsList" [post]="post" type="lesson"></app-card>
+    </ng-template>
+
+    <ng-template [ngIf]="!postsList && postsList.length == 0">
+      <h2>Nenhum post encontrado.</h2>
+    </ng-template>
 </div>
+
