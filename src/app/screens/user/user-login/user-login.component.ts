@@ -4,10 +4,10 @@ import { Firestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastService } from 'app/components/toastr/toast.service';
+import { ToastService } from 'app/shared/toastr/toast.service';
 import { User } from '../user.interface';
 import { UserService } from '../user.service';
-import { HeaderService } from 'app/components/header/header.service';
+import { HeaderService } from 'app/shared/header/header.service';
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -33,7 +33,7 @@ export class UserLoginComponent implements OnInit {
           (userFind: User) => {
             return user.email == userFind.email && user.password == userFind.password
           }
-        ) 
+        )
         this.loading = false
         if(userExist){
           localStorage.setItem('next_devs@user', JSON.stringify(userExist))

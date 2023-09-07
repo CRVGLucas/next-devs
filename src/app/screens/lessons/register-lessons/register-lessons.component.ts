@@ -12,7 +12,7 @@ import {
 } from '@firebase/firestore';
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ToastService } from 'app/components/toastr/toast.service';
+import { ToastService } from 'app/shared/toastr/toast.service';
 import { Router } from '@angular/router';
 
 
@@ -71,7 +71,7 @@ export class RegisterLessonsComponent implements OnInit {
   };
   libAndFrameworkCollection: CollectionReference<DocumentData> | any;
   platformsCollection: CollectionReference<DocumentData> | any;
-  lessonsCollection: CollectionReference<DocumentData> | any; 
+  lessonsCollection: CollectionReference<DocumentData> | any;
   libsAndFrameworks: any = []
   platforms: any = []
   idPlatform = ''
@@ -82,7 +82,7 @@ export class RegisterLessonsComponent implements OnInit {
     content: new FormControl(''),
   })
 
-  constructor( private readonly firestore: Firestore, private toastr: ToastService, private router: Router) { 
+  constructor( private readonly firestore: Firestore, private toastr: ToastService, private router: Router) {
     this.libAndFrameworkCollection = collection(this.firestore, 'bibliotecas-e-frameworks');
     this.platformsCollection = collection(this.firestore, 'plataformas');
     this.lessonsCollection = collection(this.firestore, 'aulas');
@@ -126,7 +126,7 @@ export class RegisterLessonsComponent implements OnInit {
           }
         )
       }
-    )  
+    )
   }
 
   getPlatforms(){

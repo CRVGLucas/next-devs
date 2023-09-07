@@ -11,7 +11,7 @@ import {
 } from '@firebase/firestore';
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { ToastService } from 'app/components/toastr/toast.service';
+import { ToastService } from 'app/shared/toastr/toast.service';
 @Component({
   selector: 'app-edit-platform',
   templateUrl: './edit-platform.component.html',
@@ -30,7 +30,7 @@ export class EditPlatformComponent implements OnInit {
 
   constructor(private readonly firestore: Firestore, private router: Router,private route: ActivatedRoute, private toastr: ToastService) {
     this.platformsCollection = collection(this.firestore, 'plataformas');
-    this.libAndFrameworkCollection = collection(this.firestore, 'bibliotecas-e-frameworks'); 
+    this.libAndFrameworkCollection = collection(this.firestore, 'bibliotecas-e-frameworks');
     this.idPlatform = this.route.snapshot.paramMap.get('id');
     this.getPlatforms()
   }
@@ -61,10 +61,10 @@ export class EditPlatformComponent implements OnInit {
           }
         )
       }
-    )  
+    )
   }
 
- 
+
 
   editPlatform(){
     const editPlatformReference = doc(this.firestore,`plataformas/${this.idPlatform}`);

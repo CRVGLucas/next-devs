@@ -10,7 +10,7 @@ import {
   updateDoc,
 } from '@firebase/firestore';
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
-import { ToastService } from 'app/components/toastr/toast.service';
+import { ToastService } from 'app/shared/toastr/toast.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-register-libs-and-frameworks',

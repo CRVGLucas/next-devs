@@ -12,7 +12,7 @@ import {
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
 import { UserService } from 'app/screens/user/user.service';
 import { FavoritesService } from 'app/screens/favorites/favorites.service';
-import { ToastService } from 'app/components/toastr/toast.service';
+import { ToastService } from 'app/shared/toastr/toast.service';
 @Component({
   selector: 'app-list-lessons',
   templateUrl: './list-lessons.component.html',
@@ -24,13 +24,13 @@ export class ListLessonsComponent implements OnInit {
   favoritesLFCollection: CollectionReference<DocumentData> | any;
   lessonsList: any = []
   isAdmin: boolean = false;
-  hideFavorite: boolean = false; 
+  hideFavorite: boolean = false;
   favorited: boolean = false;
   isLogged: boolean = false;
   constructor(private route: ActivatedRoute, private router: Router, private toastr: ToastService, private readonly firestore: Firestore, private userService: UserService, private favoriteService: FavoritesService) {
-    this.idLibFramework = this.route.snapshot.paramMap.get('id'); 
+    this.idLibFramework = this.route.snapshot.paramMap.get('id');
     this.favoritesLFCollection = collection(this.firestore, 'bibliotecas-e-frameworks-favoritos');
-    this.lessonsCollection = collection(this.firestore, 'aulas'); 
+    this.lessonsCollection = collection(this.firestore, 'aulas');
     this.getLessons()
     this.isLogged = localStorage.getItem('next_devs@user') ? true : false;
     this.isAdmin = this.userService.checkUserIsAdmin()

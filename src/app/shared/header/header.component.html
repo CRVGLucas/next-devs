@@ -1,0 +1,72 @@
+<header class="header">
+  <div class="logo">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        aria-current="page"
+        routerLink="/"
+        routerLinkActive="active"
+      >
+        Início
+      </a>
+    </li>
+  </div>
+  <nav class="menu-items">
+
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        aria-current="page"
+        routerLink="/platforms"
+        routerLinkActive="active"
+      >
+        Plataformas
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="hideRegister">
+      <a
+        class="nav-link"
+        routerLink="/favorites"
+        routerLinkActive="active"
+      >
+        Meus Favoritos
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="hideRegister">
+      <a
+        class="nav-link"
+        routerLink="/edit/user"
+        routerLinkActive="active"
+      >
+        Minha Conta
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="!hideRegister">
+      <a class="nav-link" routerLink="/login" routerLinkActive="active">
+        Login
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="!hideRegister">
+      <a
+        class="nav-link"
+        routerLink="/register"
+        routerLinkActive="active"
+      >
+        Cadastro
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="hideRegister">
+      <a
+        class="nav-link"
+        (click)="logout()"
+        routerLinkActive="active"
+      >
+        Sair
+      </a>
+    </li>
+  </nav>
+
+  </header>

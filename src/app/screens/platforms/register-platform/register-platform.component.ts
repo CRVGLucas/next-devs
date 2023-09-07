@@ -11,7 +11,7 @@ import {
 } from '@firebase/firestore';
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { ToastService } from 'app/components/toastr/toast.service';
+import { ToastService } from 'app/shared/toastr/toast.service';
 @Component({
   selector: 'app-register-platform',
   templateUrl: './register-platform.component.html',
@@ -25,7 +25,7 @@ export class RegisterPlatformComponent implements OnInit {
     logo: new FormControl(''),
   });
 
-  constructor(private readonly firestore: Firestore, private router: Router, private toastr: ToastService) { 
+  constructor(private readonly firestore: Firestore, private router: Router, private toastr: ToastService) {
     this.platformsCollection = collection(this.firestore, 'plataformas');
   }
 

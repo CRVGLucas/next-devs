@@ -9,7 +9,7 @@ import {
   updateDoc,
 } from '@firebase/firestore';
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
-import { ToastService } from 'app/components/toastr/toast.service';
+import { ToastService } from 'app/shared/toastr/toast.service';
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
@@ -23,9 +23,9 @@ export class FavoritesComponent implements OnInit {
   listLFFavorites: any = []
   listLessonsFavorites: any = []
   user: any
-  constructor(private readonly firestore: Firestore, private toastr: ToastService) { 
-    this.favoritesLFCollection = collection(this.firestore, 'bibliotecas-e-frameworks-favoritos'); 
-    this.favoritesLessonsCollection = collection(this.firestore, 'aulas-favoritas'); 
+  constructor(private readonly firestore: Firestore, private toastr: ToastService) {
+    this.favoritesLFCollection = collection(this.firestore, 'bibliotecas-e-frameworks-favoritos');
+    this.favoritesLessonsCollection = collection(this.firestore, 'aulas-favoritas');
     this.lessonCollection = collection(this.firestore, 'aulas');
     this.libAndFrameworkCollection = collection(this.firestore, 'bibliotecas-e-frameworks');
     this.user = localStorage.getItem('next_devs@user')
@@ -79,7 +79,7 @@ export class FavoritesComponent implements OnInit {
         favorites.map(
           (favorite: any) => {
             if(favorite.userId == user.id){
-              collectionData(this.lessonCollection, {idField: 'id'}).subscribe( 
+              collectionData(this.lessonCollection, {idField: 'id'}).subscribe(
                 (lessons) => {
                   lessons.map(
                     (lesson: any) => {
@@ -89,12 +89,12 @@ export class FavoritesComponent implements OnInit {
                         favorite.itemId = lesson.id
                         this.listLessonsFavorites.push(favorite)
                       }
-                    } 
+                    }
                   )
                 }
               )
             }
-    
+
           }
         )
       }
@@ -121,7 +121,7 @@ export class FavoritesComponent implements OnInit {
                     }
                   )
                 }
-              )  
+              )
             }
           }
         )

@@ -10,11 +10,10 @@ import {
   updateDoc,
 } from '@firebase/firestore';
 import { UserService } from '../user.service';
-import { ToastService } from 'app/components/toastr/toast.service';
+import { ToastService } from 'app/shared/toastr/toast.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Firestore } from '@angular/fire/firestore';
-import { HeaderService } from 'app/components/header/header.service';
+import { HeaderService } from 'app/shared/header/header.service';
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
@@ -26,11 +25,11 @@ export class UserInfoComponent implements OnInit {
   editForm: FormGroup = new FormGroup({
     name: new FormControl(''),
     email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)  
+    password: new FormControl('', Validators.required)
   })
   loading: boolean = false
   user: any = localStorage.getItem('next_devs@user')
-  constructor(private readonly firestore: Firestore, private userService: UserService, private headerService: HeaderService,  private router: Router,private route: ActivatedRoute, private toastr: ToastService) { 
+  constructor(private readonly firestore: Firestore, private userService: UserService, private headerService: HeaderService,  private router: Router,private route: ActivatedRoute, private toastr: ToastService) {
     this.user = JSON.parse(this.user)
 
     this.editForm.get('name')?.setValue(this.user.name)
@@ -51,7 +50,7 @@ export class UserInfoComponent implements OnInit {
               (userFind: any) => {
                 return  this.editForm.get('email')?.value == userFind.email && this.user.id != userFind.id
               }
-            ) 
+            )
             this.loading = false
             if(userExist){
               localStorage.setItem('next_devs@user', JSON.stringify(userExist))
@@ -66,7 +65,7 @@ export class UserInfoComponent implements OnInit {
                         (userFind: any) => {
                           return this.user.id == userFind.id
                         }
-                      ) 
+                      )
                       this.loading = false
                       if(userExist){
                         localStorage.setItem('next_devs@user', JSON.stringify(userExist))
@@ -79,7 +78,7 @@ export class UserInfoComponent implements OnInit {
                 }
               ).catch(
                 (error) => {
-          
+
                 }
               )
             }

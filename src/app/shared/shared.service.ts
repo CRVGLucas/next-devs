@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AuxiliaryFunctions {
+export class SharedService {
 
-  constructor() {}
+  constructor() { }
 
   toLimitText(text = '', limit = 50, elipsi?: string): string{
     return `${text.substring(0,limit)}${elipsi}`

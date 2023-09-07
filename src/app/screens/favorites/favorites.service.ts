@@ -9,16 +9,16 @@ import {
   updateDoc,
 } from '@firebase/firestore';
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
-import { ToastService } from 'app/components/toastr/toast.service';
+import { ToastService } from 'app/shared/toastr/toast.service';
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritesService {
   favoritesLFCollection: CollectionReference<DocumentData> | any;
   favoritesLessonsCollection: CollectionReference<DocumentData> | any;
-  constructor(private readonly firestore: Firestore, private toastr: ToastService ) { 
-    this.favoritesLFCollection = collection(this.firestore, 'bibliotecas-e-frameworks-favoritos'); 
-    this.favoritesLessonsCollection = collection(this.firestore, 'aulas-favoritas'); 
+  constructor(private readonly firestore: Firestore, private toastr: ToastService ) {
+    this.favoritesLFCollection = collection(this.firestore, 'bibliotecas-e-frameworks-favoritos');
+    this.favoritesLessonsCollection = collection(this.firestore, 'aulas-favoritas');
   }
 
   saveLibAndFrameworkToFavorites(userId: any, idLibFramework: any){

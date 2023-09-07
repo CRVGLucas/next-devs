@@ -12,7 +12,7 @@ import {
 } from '@firebase/firestore';
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ToastService } from 'app/components/toastr/toast.service';
+import { ToastService } from 'app/shared/toastr/toast.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'app/screens/user/user.service';
 @Component({
@@ -71,7 +71,7 @@ export class EditLessonComponent implements OnInit {
   idLesson: any
   libAndFrameworkCollection: CollectionReference<DocumentData> | any;
   platformsCollection: CollectionReference<DocumentData> | any;
-  lessonCollection: CollectionReference<DocumentData> | any; 
+  lessonCollection: CollectionReference<DocumentData> | any;
   libsAndFrameworks: any = []
   platforms: any = []
   idPlatform = ''
@@ -84,11 +84,11 @@ export class EditLessonComponent implements OnInit {
     content: new FormControl('', Validators.required),
   })
 
-  constructor( private readonly firestore: Firestore, private userService: UserService,private toastr: ToastService, private route: ActivatedRoute, private router: Router) { 
+  constructor( private readonly firestore: Firestore, private userService: UserService,private toastr: ToastService, private route: ActivatedRoute, private router: Router) {
     this.libAndFrameworkCollection = collection(this.firestore, 'bibliotecas-e-frameworks');
     this.platformsCollection = collection(this.firestore, 'plataformas');
     this.lessonCollection = collection(this.firestore, 'aulas');
-    this.idLesson = this.route.snapshot.paramMap.get('id'); 
+    this.idLesson = this.route.snapshot.paramMap.get('id');
     this.getPlatforms()
     this.getLesson()
     this.hideEdit = this.userService.checkUserIsAdmin()
@@ -152,7 +152,7 @@ export class EditLessonComponent implements OnInit {
           }
         )
       }
-    )  
+    )
   }
 
   getPlatforms(){

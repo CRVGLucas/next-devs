@@ -10,7 +10,7 @@ import {
   updateDoc,
 } from '@firebase/firestore';
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
-import { ToastService } from 'app/components/toastr/toast.service';
+import { ToastService } from 'app/shared/toastr/toast.service';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 @Component({
   selector: 'app-edit-lib-and-framework',
@@ -31,7 +31,7 @@ export class EditLibAndFrameworkComponent implements OnInit {
   });
 
   constructor(private readonly firestore: Firestore, private toastr: ToastService, private router: Router, private route: ActivatedRoute) {
-    this.idLibFramework = this.route.snapshot.paramMap.get('id'); 
+    this.idLibFramework = this.route.snapshot.paramMap.get('id');
     this.platformsCollection = collection(this.firestore, 'plataformas');
     this.libAndFrameworkCollection = collection(
       this.firestore,
@@ -55,7 +55,7 @@ export class EditLibAndFrameworkComponent implements OnInit {
           }
         )
       }
-    )  
+    )
   }
 
   getPlatforms() {

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CollectionReference, DocumentData } from '@firebase/firestore';
 import { UserService } from '../user.service';
-import { ToastService } from 'app/components/toastr/toast.service';
+import { ToastService } from 'app/shared/toastr/toast.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
@@ -67,7 +67,7 @@ export class UserRegisterComponent implements OnInit {
         this.loading = false;
         this.toastr.showError('Uma conta já foi cadastrada com este e-mail, tente usar outro e-mail.');
         return
-      } 
+      }
       this.userFound = null
       user.createdAt = new Date();
       this.createUser(user)

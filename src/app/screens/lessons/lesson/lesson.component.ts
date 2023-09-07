@@ -1,4 +1,4 @@
-import { ToastService } from 'app/components/toastr/toast.service';
+import { ToastService } from 'app/shared/toastr/toast.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
@@ -28,9 +28,9 @@ export class LessonComponent implements OnInit {
   favorited: boolean = false;
   hideEdit: boolean = true;
   constructor(private route: ActivatedRoute, private toastr: ToastService, private readonly firestore: Firestore, private userService: UserService, private favoriteService: FavoritesService) {
-    this.idLesson = this.route.snapshot.paramMap.get('id'); 
+    this.idLesson = this.route.snapshot.paramMap.get('id');
     this.lessonCollection = collection(this.firestore, 'aulas');
-    this.favoritesLessonsCollection = collection(this.firestore, 'aulas-favoritas'); 
+    this.favoritesLessonsCollection = collection(this.firestore, 'aulas-favoritas');
     this.getLessons()
     this.hideFavorite = this.checkIfLessonIsFavorited()
     this.hideEdit = this.userService.checkUserIsAdmin()
